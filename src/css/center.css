@@ -1,87 +1,65 @@
 html, body, .container-fluid, .left, .col-md-2 {
-  height: 100%;
-}
+  height: 100%; }
 
 .left .col-md-2 {
-  background-color: #20222a;
-}
-.left .col-md-2 h1 {
-  color: #C2C2C2;
-  font-size: 18px;
-  text-align: center;
-  line-height: 55px;
-}
-.left .col-md-2 div {
-  background-color: #20222a;
-}
-.left .col-md-2 h5 button {
-  color: #C2C2C2;
-  font-size: 18px;
-  font-weight: bold;
-}
-.left .col-md-2 li {
-  background: #20222a;
-}
-.left .col-md-2 li a {
-  color: #C2C2C2;
-}
-.left .col-md-2 .list-group-item {
-  padding-left: 40px;
-}
+  background-color: #20222a; }
+  .left .col-md-2 h1 {
+    color: #C2C2C2;
+    font-size: 1.12rem;
+    text-align: center;
+    line-height: 3.4rem; }
+  .left .col-md-2 div {
+    background-color: #20222a; }
+  .left .col-md-2 h5 button {
+    color: #C2C2C2;
+    font-size: 1.12rem;
+    font-weight: bold; }
+  .left .col-md-2 li {
+    background: #20222a; }
+    .left .col-md-2 li a {
+      color: #C2C2C2; }
+  .left .col-md-2 .list-group-item {
+    padding-left: 2.5rem; }
 
 .navs {
-  padding: 0;
-}
-.navs ol {
-  background-color: #fff;
-  border-bottom: 1px solid #f2f2f2;
-}
-.navs ol .right {
-  position: absolute;
-  right: 20px;
-}
+  padding: 0; }
+  .navs ol {
+    background-color: #fff;
+    border-bottom: 0.06rem solid #f2f2f2; }
+    .navs ol .right {
+      position: absolute;
+      right: 1.25rem; }
 
 .input-group {
-  margin: 20px 0;
-}
-.input-group .btn-secondary {
-  margin-left: 20px;
-}
+  margin: 1.25rem 0; }
+  .input-group .btn-secondary {
+    margin-left: 1.25rem; }
 
 table thead th:first-child {
-  text-align: center;
-}
+  text-align: center; }
 table tbody tr td:first-child, table tbody tr td:last-child {
-  text-align: center;
-}
+  text-align: center; }
 table td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 200px;
-  padding: 8px;
-}
+  max-width: 12.5rem;
+  padding: 0.5rem; }
 table .col-md-6 {
-  padding: 2px;
-  width: 32px;
-}
+  padding: 0.12rem;
+  width: 2rem; }
 table a {
   display: inline-block;
-  margin-left: 2px;
-}
+  margin-left: 0.12rem; }
 table img {
-  width: 32px;
-}
+  width: 2rem; }
 
 #exampleModal {
-  color: #000;
-}
-#exampleModal .modal-content {
-  width: 820px;
-}
-#exampleModal .modal-body {
-  height: 550px;
-  overflow-y: auto;
-}
+  color: #000; }
+  #exampleModal .modal-content {
+    width: 51.25rem; }
+  #exampleModal .modal-body {
+    height: 34rem;
+    overflow-y: auto; }
 
 /*# sourceMappingURL=center.css.map */
