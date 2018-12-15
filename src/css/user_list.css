@@ -1,0 +1,11 @@
+#content button { margin: 0 0.62rem; }
+#content button img { width: 1.6rem; }
+#content table { margin-top: 1.25rem; }
+#content table input[type='checkbox'] { width: 1rem; height: 1rem; }
+#content table button { padding: 0; margin: 0 0.3rem; }
+#content table button img { width: 1.8rem; }
+#content table tr td, #content table tr th { text-align: center; vertical-align: middle !important; font-size: 1.12rem; }
+#content table tr td:first-child, #content table tr th:first-child { width: 3.1rem; }
+#content table tr td:last-child, #content table tr th:last-child { width: 3.1rem; }
+
+/*# sourceMappingURL=user_list.css.map */
