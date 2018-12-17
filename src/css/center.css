@@ -7,16 +7,16 @@ html, body, .container-fluid, .left, .col-md-2 {
 }
 .left .col-md-2 h1 {
   color: #C2C2C2;
-  font-size: 18px;
+  font-size: 1.12rem;
   text-align: center;
-  line-height: 55px;
+  line-height: 3.4rem;
 }
 .left .col-md-2 div {
   background-color: #20222a;
 }
 .left .col-md-2 h5 button {
   color: #C2C2C2;
-  font-size: 18px;
+  font-size: 1.12rem;
   font-weight: bold;
 }
 .left .col-md-2 li {
@@ -26,7 +26,7 @@ html, body, .container-fluid, .left, .col-md-2 {
   color: #C2C2C2;
 }
 .left .col-md-2 .list-group-item {
-  padding-left: 40px;
+  padding-left: 2.5rem;
 }
 
 .navs {
@@ -34,18 +34,18 @@ html, body, .container-fluid, .left, .col-md-2 {
 }
 .navs ol {
   background-color: #fff;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 0.06rem solid #f2f2f2;
 }
 .navs ol .right {
   position: absolute;
-  right: 20px;
+  right: 1.25rem;
 }
 
 .input-group {
-  margin: 20px 0;
+  margin: 1.25rem 0;
 }
 .input-group .btn-secondary {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
 
 table thead th:first-child {
@@ -58,29 +58,29 @@ table td {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 200px;
-  padding: 8px;
+  max-width: 12.5rem;
+  padding: 0.5rem;
 }
 table .col-md-6 {
-  padding: 2px;
-  width: 32px;
+  padding: 0.12rem;
+  width: 2rem;
 }
 table a {
   display: inline-block;
-  margin-left: 2px;
+  margin-left: 0.12rem;
 }
 table img {
-  width: 32px;
+  width: 2rem;
 }
 
 #exampleModal {
   color: #000;
 }
 #exampleModal .modal-content {
-  width: 820px;
+  width: 51.25rem;
 }
 #exampleModal .modal-body {
-  height: 550px;
+  height: 34rem;
   overflow-y: auto;
 }
 

@@ -5,16 +5,16 @@ html, body, .container-fluid, .left, .col-md-2 {
     background-color: #20222a;
     h1 {
         color: #C2C2C2;
-        font-size: 18px;
+        font-size: 1.12rem;
         text-align: center;
-        line-height: 55px;
+        line-height: 3.4rem;
     }
     div {
         background-color: #20222a;
     }
     h5 button {
         color: #C2C2C2;
-        font-size: 18px;
+        font-size: 1.12rem;
         font-weight: bold;
     }
     li {
@@ -24,7 +24,7 @@ html, body, .container-fluid, .left, .col-md-2 {
         }
     }
     .list-group-item {
-        padding-left: 40px;
+        padding-left: 2.5rem;
     }
 }
 
@@ -32,18 +32,18 @@ html, body, .container-fluid, .left, .col-md-2 {
     padding: 0;
     ol {
         background-color: #fff;
-        border-bottom: 1px solid #f2f2f2;
+        border-bottom: 0.06rem solid #f2f2f2;
         .right {
             position: absolute;
-            right: 20px;
+            right: 1.25rem;
         }
     }
 }
 
 .input-group {
-    margin: 20px 0;
+    margin: 1.25rem 0;
     .btn-secondary {
-        margin-left: 20px;
+        margin-left: 1.25rem;
     }
 }
 
@@ -68,29 +68,29 @@ table {
         overflow:hidden;
         text-overflow:ellipsis;
         white-space:nowrap;
-        max-width: 200px;
-        padding: 8px;
+        max-width: 12.5rem;
+        padding: 0.5rem;
     }
     .col-md-6 {
-        padding: 2px;
-        width: 32px;
+        padding: 0.12rem;
+        width: 2rem;
     }
     a {
         display: inline-block;
-        margin-left: 2px;
+        margin-left: 0.12rem;
     }
     img {
-        width: 32px;
+        width: 2rem;
     }
 }
 
 #exampleModal {
     color: #000;
     .modal-content {
-        width: 820px;
+        width: 51.25rem;
     }
     .modal-body {
-        height: 550px;
+        height: 34rem;
         overflow-y: auto;
     }
 }
