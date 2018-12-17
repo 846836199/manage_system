@@ -1,5 +1,5 @@
 const express = require('express');
-
+const _sql = require('./router/connectSql');
 //引入配置文件
 const {port,host,root} = require('./router/config.json');
 
@@ -15,6 +15,9 @@ app.use(express.static(root));
 //路由
 app.use(Router);
 
+// app.get("/goodlist",async (req,res)=>{
+
+// });
 //服务器端口
 app.listen(port,()=>{
     console.log(`Server is running on http://${host}:${port}`);

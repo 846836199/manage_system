@@ -1,12 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Good Lis</title>
+    <title>Good List</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/good_list.css">
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+        <div class="row left">
+            <div class="col-md-2" id="common">
+                <h1>后台管理系统</h1>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                    商品管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="good_list.html">商品列表</a></li>
+                                    <li class="list-group-item"><a href="#">商品分类</a></li>
+                                    <li class="list-group-item"><a href="#">添加商品</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    用户管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="#">用户列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    订单管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="#">订单列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12 navs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="center.html">首页</a></li>
+                                <li class="breadcrumb-item">商品管理</li>
+                                <li class="breadcrumb-item">商品列表</li>
+                                <li class="right"><span class="admin"></span><button type="button" class="btn btn-warning logout">退出</button></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="mb-3 form-row align-items-center topForm">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="searchGoodName" placeholder="请输入商品名称">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="checkClass">
+                                    <option value="0">请选择分类</option>
+                                </select>
+                            </div>
+
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-outline-dark" id="addGood">添加</button>
+                                <button type="button" class="btn btn-outline-dark" id="removeMove">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row good_list">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="good_check"><input type="checkbox"></th>
+                                    <th class="good_id">ID</th>
+                                    <th class="good_name">商品名称</th>
+                                    <th class="good_class">分类</th>
+                                    <th class="price">价格(原价)</th>
+                                    <th class="price">价格(现价)</th>
+                                    <th>库存</th>
+                                    <th>状态</th>
+                                    <th class="good_time">添加时间</th>
+                                    <th class="operation">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td class="good_check"><input type="checkbox"></td>
+                                    <td class="good_id">111</td>
+                                    <td class="good_name">111111111111111111111111111</td>
+                                    <td class="good_class">111sssssssss</td>
+                                    <td class="price">111</td>
+                                    <td class="price">11</td>
+                                    <td>11</td>
+                                    <td>111</td>
+                                    <td class="good_time">2018-12-15</td>
+                                    <td class="operation">
+                                        <button type="button" class="btn btn-info edit">修改</button>
+                                        <button type="button" class="btn btn-danger remove">删除</button>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                        <div class="w-100 clearfix table_page">
+                            <div class="float-right">
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary sure">确定</button>
+                                </div>
+                            </div>
+                            <form class="float-right page_setNum">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <select id="inputState" class="form-control">
+                                            <!-- <option selected>一页10条</option> -->
+                                            <!-- <option>一页20条</option> -->
+                                        </select>
+                                    </div>
+                                    <div class="col-auto" style="line-height:38px;">
+                                        共<span class="pageTotal">10</span>页 到第
+                                    </div>
+                                    <div style="width:50px">
+                                        <input type="text" class="form-control page" value="1">
+                                    </div>
+                                    <div class="col-auto" style="line-height:38px;">
+                                            页
+                                        </div>
+                                </div>
+                            </form>
+                            <ul class="pagination float-right">
+                                <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <span class="morePages">...</span>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <span class="morePages">...</span>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="../assets/jquery-1.10.1.min.js"></script>
+<script src="../assets/popper/dist/umd/popper.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.js"></script>
+<script src="../js/good_list.js"></script>
+
 </html>
