@@ -11,7 +11,7 @@ Router.post('/',bodyParser.urlencoded({extended:false}),async (req,res)=>{
     and password = '${password}'`;
     let data,json;
     try{
-        data = await _sql.query(sql);
+        data = await _sql.select(sql);
         if(data.code == '1'){
             json = {
                 "code": data.code,
