@@ -8,7 +8,7 @@ let pool = mysql.createPool({
     database: 'nrg'
 });
 
-exports.query = sql => {
+exports.select = sql => {
     return new Promise((resolve,reject) => {
         pool.query(sql,(err,rows)=>{
             let data;
@@ -29,10 +29,44 @@ exports.query = sql => {
             } else {
                 data = {
                     code:0,
-                    data:'none'
+                    data:'none',
+                    rows
                 }
             }
             resolve(data);
         });
-    })
+        // pool.end();
+    });
+}
+
+exports.delete = sql => {
+    return new Promise((resolve,reject) => {
+        pool.query(sql,(err,rows)=>{
+            let data;
+            if(err){
+                data = {
+                    code:0,
+                    data:err
+                }
+                reject(data);
+                return;
+            }
+
+            if(rows.affectedRows){
+                data = {
+                    code: 1,
+                    data:rows
+                }
+            } else {
+                data = {
+                    code:0,
+                    data:'none'
+                }
+                reject(data);
+                return;
+            }
+            resolve(data);
+        });
+        // pool.end();
+    });
 }

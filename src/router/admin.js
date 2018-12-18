@@ -23,7 +23,7 @@ Router.post('/',bodyParser.urlencoded({extended:false}),async (req,res)=>{
             }
         }
     } catch(err){
-        
+        json = err;
     }
     res.send(json);
 });

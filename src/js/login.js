@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let xhr = new XMLHttpRequest();
                     xhr.onload = () =>{
                         let data = JSON.parse(xhr.responseText);
+                        // let data = xhr.responseText;
                         console.log(data);
                         if(data.code == "1"){
                             sessionStorage.setItem('username', _username);
