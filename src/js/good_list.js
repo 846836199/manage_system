@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let allClass = []; //所有分类
     let thisClass = 0; //当前分类
     let orderby = 'id';
+    let thisRequire = '';
 
     //导航栏节点
     let nav = document.querySelector('.navs');
@@ -29,8 +30,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     //表格节点
     let goodlist = document.querySelector('.good_list');
+    let checkAll = goodlist.querySelector('.checkAll'); //全选
     let tbody = goodlist.querySelector('.table tbody');
-    let checkboxs = tbody.querySelectorAll('.good_check input'); //tbody 里面所有的checkbox
+    let checkboxs; //tbody 里面所有的checkbox
     let tablePage = document.querySelector('.table_page');
     let sureBtn = tablePage.querySelector('.sure');  //确定按钮
     let showPages = document.querySelector('#inputState'); //显示条数
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     function selectGoodClass(){
         $.ajax({
             type: "get",
-            url: "/goodlist/goodClass",
+            url: "/category",
             data: "type=selectClass",
             success: function (data) {
                 // let res = JSON.parse(data);
@@ -74,11 +76,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     renderTable();
     function renderTable(){
         let xhr = new XMLHttpRequest();
-        let url = `/goodlist?type=search&page=${page}&datas=${datas}&thisClass=${thisClass}&orderby=${orderby}`;
+        let url = `/goodlist?type=search&thisRequire=${thisRequire}&page=${page}&datas=${datas}&thisClass=${thisClass}&orderby=${orderby}`;
         xhr.onload =()=> {
             if(statusCode.indexOf(xhr.status)){
                 let data = JSON.parse(xhr.responseText);
-                console.log(data);
+                // console.log(data);
                 if(data.code == "1"){
                     let html = data.data.map((item)=>{
                         let classN;
@@ -100,11 +102,12 @@ document.addEventListener('DOMContentLoaded',()=>{
                                     <td class="operation">
                                         <button type="button" class="btn btn-info edit">修改</button>
                                         <button type="button" class="btn btn-danger remove">删除</button>
+                                        <button type="button" class="btn btn-success putaway">上架</button>
                                     </td>
                                 </tr>`;
                     }).join('');
                     tbody.innerHTML = html;
-
+                    checkboxs = tbody.querySelectorAll('.good_check input');
                     //表格下部页码渲染
                     //一页显示多少条
                     let option;
@@ -133,9 +136,10 @@ document.addEventListener('DOMContentLoaded',()=>{
                     } else if(page>4) {
                         pageS = page-4;
                     }
-                    pageH = pageSGroup;
+                    
                     //渲染个数
                     if(data.pages<10){
+                        pageH='';
                         pageT = data.pages*1;
                         for(let i=1;i<=pageT;i++){
                             if(i == page){
@@ -145,12 +149,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                             }
                         }
                     } else {
+
                         if(page>5){
                             pageSGroup = pageSGroup + '<span class="morePages">...</span>';
                         }
                         if(page < data.pages-5){
                             pageEGroup = '<span class="morePages">...</span>' + pageEGroup;
                         }
+                        pageH = pageSGroup;
                         // console.log(pageS,pageS+pageT);
                         for(let i=pageS;i<pageS+pageT;i++){
                             if(i == page){
@@ -168,10 +174,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                     //输入框的值设为当前页码
                     inputPage.value = page;
                     resizeHeight();
-                    return true;
+
                 } else {
-                    return false;
+                    tbody.innerHTML = "<tr><td colspan='10' class='text-center'>暂无当前数据</td></tr>";
+                    pageGroup.innerHTML = "";
+                    downPageTotal.innerHTML = "0";
+                    inputPage.value = "0";
                 }
+                searchKey = true;
             }
         }
         xhr.open('get',url,true);
@@ -187,13 +197,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     //模糊查询
     search.onclick = ()=>{
         let searchCon = searchInput.value.trim();
+        //确定时设置类别
         thisClass = checkClass.value ? checkClass.value : 0;
+        //设置开关防止多次请求
         if(searchCon && searchKey){
             searchKey = false;
+            thisRequire = searchCon;
             //渲染
-            if(renderTable()){
-                searchKey = false;
-            }
+            renderTable();
         }
     }
 
@@ -202,7 +213,46 @@ document.addEventListener('DOMContentLoaded',()=>{
         location.href = './insert_good.html';
     }
 
+    //全选
+    checkAll.onclick = function(){
+        $('tbody .good_check').find('input').prop('checked',$(this).prop('checked'));
+    }
+
+    //单选取消选框时 全选取消
+    $('tbody').on('click','.good_check input',function(){
+        // console.log($(this).prop('checked'));
+        if($(this).prop('checked')){
+            let i = 0;
+            $('tbody .good_check').find('input').each(function(){
+                if($(this).prop('checked')===true){
+                    i++;
+                }
+            });
+            // console.log($('tbody .good_check').find('input').length);
+            if(i==$('tbody .good_check').find('input').length){
+                $('thead .good_check').find('input').prop('checked',true);
+            }
+        } else {
+            $('thead .good_check').find('input').prop('checked',false);
+        }
+    });
+
     //商品批量删除
+    function deleteTr(allGoodId){
+        let xhr = new XMLHttpRequest();
+        let url = `/goodlist?type=delete&allGoodId=${allGoodId}`;
+        xhr.onload = ()=>{
+            if(statusCode.indexOf(xhr.status)){
+                let data = JSON.parse(xhr.responseText);
+                console.log(data);
+                if(data.code == "1"){
+                    renderTable();//重新请求渲染
+                }
+            }
+        }
+        xhr.open('get',url,true);
+        xhr.send();
+    }
     removeMove.onclick = ()=>{
         let allGoodId = '';
         for(let i=0;i<checkboxs.length;i++){
@@ -213,30 +263,41 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         }
         allGoodId = allGoodId.slice(0,-1);
+        console.log(checkboxs.length,allGoodId);
         if(allGoodId){
-            let xhr = new XMLHttpRequest();
-            let url = `/goodlist?type=delete&allGoodId=${allGoodId}`;
-            xhr.onload = ()=>{
-                if(statusCode.indexOf(xhr.status)){
-                    let data = JSON.parse(xhr.responseText);
-                    console.log(data);
-                    renderTable();//重新请求渲染
-                }
+            let tips = confirm("你确定要删除勾选的商品吗?");
+            if(tips){
+                deleteTr(allGoodId);
             }
-            xhr.open('get',url,true);
-            xhr.send();
+        } else {
+            alert('没有勾选任何商品');
         }
     }
 
+    //单行删除
+    $('tbody').on('tr click','.remove',function(){
+        let thisGoodId = $(this).parent().parent().find('.good_id').html();
+        if(thisGoodId){
+            let issure = confirm("您确定删除这条数据吗?");
+            if(issure){
+                deleteTr(thisGoodId);
+            }
+        }
+    });
+
     //表格底部功能
+    //页码点击
     $('.pagination').on('click','.pageBtn',function(){
         page = $(this).html()*1;
         renderTable();
+        $('thead .good_check').find('input').prop('checked',false);00000000000
     });
+    //上一页
     $('.pagination').on('click','.prev',function(){
         page = page-1;
         renderTable();
     });
+    //下一页
     $('.pagination').on('click','.next',function(){
         page = page+1;
         renderTable();

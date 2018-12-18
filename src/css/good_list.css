@@ -65,6 +65,10 @@ body,
   width: 100%;
 }
 
+.table {
+  font-size: 0.8rem;
+}
+
 .good_check {
   width: 30px;
   text-align: center;
@@ -97,7 +101,7 @@ body,
 }
 
 .good_status {
-  max-width: 125px;
+  max-width: 64px;
 }
 
 .price {
@@ -109,7 +113,7 @@ body,
 }
 
 .operation {
-  width: 150px;
+  width: 184px;
 }
 .operation button {
   font-size: 0.5rem;
