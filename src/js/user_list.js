@@ -23,7 +23,7 @@ $(function () {
                             <td>${item.phoneNumber}</td>
                             <td>${item.email}</td>
                             <td>${item.grade}</td>
-                            <td>${item.time}</td>
+                            <td>${new Date(item.time).toLocaleString()}</td>
                             <td>
                                 <button type="button" class="btn btn-success set"><img src="../css/img/set.png"></button>
                                 <button type="button" class="btn btn-warning del"><img src="../css/img/del.png"></button>
