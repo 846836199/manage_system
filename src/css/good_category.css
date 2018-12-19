@@ -69,63 +69,13 @@ body,
   font-size: 0.8rem;
 }
 
-.good_check {
+.category_check {
   width: 30px;
   text-align: center;
 }
 
-.good_id {
-  width: 60px;
-  text-align: center;
-}
-
-.good_name {
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_class {
-  max-width: 70px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_time {
-  max-width: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_status {
-  max-width: 64px;
-}
-
-.price {
-  width: 102px;
-}
-
-.table td {
-  vertical-align: middle;
-}
-
-.operation {
-  width: 184px;
-}
-.operation button {
-  font-size: 0.5rem;
-}
-
-.pagination span {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#inputState {
-  margin-left: 5px;
+.operation .btn {
+  font-size: 0.8rem;
 }
 
 .morePages {
@@ -148,4 +98,15 @@ body,
   background: #96b7c6;
 }
 
-/*# sourceMappingURL=good_list.css.map */
+.remarks {
+  width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#classHelp {
+  display: none;
+}
+
+/*# sourceMappingURL=good_category.css.map */

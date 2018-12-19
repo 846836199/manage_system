@@ -80,64 +80,13 @@ body,
     font-size: 0.8rem;
 }
 
-.good_check{
+.category_check{
     width: 30px;
     text-align: center;
 }
 
-.good_id{
-    width: 60px;
-    text-align: center;
-}
-
-.good_name{
-    max-width:150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.good_class{
-    max-width:70px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.good_time{
-    max-width:80px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.good_status{
-    max-width:64px;
-    // overflow: hidden;
-}
-
-.price{
-    width: 102px;
-}
-.table td{
-    vertical-align: middle;
-}
-.operation{
-    width:184px;
-    button{
-        font-size: 0.5rem;
-    }
-}
-
-.pagination{
-    span{
-        display: inline-block;
-        vertical-align: middle;
-    }
-}
-
-#inputState{
-    margin-left: 5px;
+.operation .btn{
+    font-size: 0.8rem;
 }
 
 .morePages{
@@ -146,9 +95,7 @@ body,
     line-height: 40px;
 }
 
-
-//df815b  96b7c6
-//升降序背景颜色
+//排序
 .orderby{
     cursor: pointer;
 }
@@ -159,4 +106,15 @@ body,
 .activeDesc {
     color: #fff;
     background: #96b7c6;
+}
+.remarks{
+    width: 340px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+//模态框
+#classHelp{
+    display:none;
 }

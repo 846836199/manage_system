@@ -5,13 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //渲染的参数
     let page = 1; //页码
     let datas = 10; //数据条数
-    // let dataTotal; //数据总条数  
     let pageTotal; //总页数
-    let allClass = []; //所有分类
-    let thisClass = 0; //当前分类
-    let orderby = 'id'; //排序
     let sort = 'desc'; //默认升序
     let thisRequire = ''; //模糊查询
+
 
     //导航栏节点
     let nav = document.querySelector('.navs');
@@ -19,41 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
     let logout = nav.querySelector('.logout');
     let isLogin = window.sessionStorage.getItem("username");
 
-    //商品列表顶部节点
+    //列表顶部节点
     let searchInput = document.querySelector('#searchGoodName'); //模糊查询
-    let checkClass = document.querySelector('#checkClass'); //选择分类
     let search = document.querySelector('#searchBtn'); //查询按钮
     let searchKey = true; //查询开关
-    let addGood = document.querySelector('#addGood'); //添加商品
+    let addCategory = document.querySelector('#addCategory'); //添加分类
     let removeMove = document.querySelector('#removeMove'); //删除多项商品
     removeMove.key = true;
-    // console.log(removeMove.key);
 
     //表格节点
-    let goodlist = document.querySelector('.good_list');
+    let checkboxs; //所有tbody复选框
+    let goodlist = document.querySelector('.category_list');
     let checkAll = goodlist.querySelector('.checkAll'); //全选
     let tbody = goodlist.querySelector('.table tbody');
-    let checkboxs; //tbody 里面所有的checkbox
     let tablePage = document.querySelector('.table_page');
     let sureBtn = tablePage.querySelector('.sure'); //确定按钮
     let showPages = document.querySelector('#inputState'); //显示条数
     let downPageTotal = tablePage.querySelector('.pageTotal'); //页总页数
     let inputPage = tablePage.querySelector('.page'); //输入的页码
     let pageGroup = tablePage.querySelector('.pagination'); //页码的盒子
-    // console.log(checkboxs);
 
     //判断是否登录 
     if (isLogin) {
-        // console.log(isLogin);
         //设置用户名
         adminName.innerHTML = isLogin;
         runAll();
     } else {
-        location.href = '../login.html';
+
     }
 
     //页面功能、渲染
-    function runAll(){
+    function runAll() {
         function resizeHeight() {
             let ofTop = goodlist.offsetTop;
             let goodHei = goodlist.offsetHeight;
@@ -61,73 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.style.height = document.body.style.height = (ofTop + navHei + goodHei) + 'px';
             // console.log(ofTop+navHei+goodHei);
         }
-        selectGoodClass();
 
-        function selectGoodClass() {
-            $.ajax({
-                type: "get",
-                url: "/category",
-                data: "type=goodselect",
-                success: function (data) {
-                    // let res = JSON.parse(data);
-                    data.data.forEach(element => {
-                        allClass.push(element);
-                    });
-                    checkClass.innerHTML += allClass.map(item => {
-                        return `<option value="${item.id}">${item.classname}</option>`;
-                    }).join('');
-                }
-            });
-        }
         renderTable();
-
+        //渲染表格
         function renderTable() {
             let xhr = new XMLHttpRequest();
-            let url = `/goodlist?type=search&thisRequire=${thisRequire}&page=${page}&datas=${datas}&thisClass=${thisClass}&orderby=${orderby}&sort=${sort}`;
+            let url = `/category?type=selectClass&thisRequire=${thisRequire}&page=${page}&datas=${datas}&orderby=id&sort=${sort}`;
             xhr.onload = () => {
                 if (statusCode.indexOf(xhr.status)) {
                     let data = JSON.parse(xhr.responseText);
-                    // console.log(data);
                     if (data.code == "1") {
                         let html = data.data.map((item) => {
-                            let classN;
-                            allClass.forEach(ele => {
-                                if (ele.id == item.class) {
-                                    classN = ele.classname;
-                                }
-                            });
-                            let thisstatus = item.status.split('-');
-                            let thisstyle = [];
-                            let putawayStyle = 'badge-warning'; //已上架
-                            let putawayStr = '下架';
-                            if (thisstatus[0] == "0") {
-                                putawayStyle = 'btn-success'; //未上架
-                                putawayStr = '上架';
-                            }
-                            // thisstatus = thisstatus.split('-');  上架 热卖 推荐 促销
-                            for (let i = 0; i < thisstatus.length; i++) {
-                                if (thisstatus[i] == "0") {
-                                    thisstyle.push('badge-secondary');
-                                } else {
-                                    thisstyle.push('badge-success');
-                                }
-                            }
-                            // console.log(thisstatus);
-                            //data-id 为当前状态码
                             return `<tr>
-                                        <td class="good_check"><input type="checkbox"></td>
-                                        <td class="good_id">${item.id}</td>
-                                        <td class="good_name">${item.name}</td>
-                                        <td class="good_class">${classN}</td>
-                                        <td class="price oldPrice">${item.old_price}</td>
-                                        <td class="price">${item.new_price}</td>
-                                        <td>${item.num}</td>
-                                        <td class="good_status"><span class="badge ${thisstyle[0]}">上架</span> <span class="badge ${thisstyle[1]}">热卖</span> <span class="badge ${thisstyle[2]}">推荐</span> <span class="badge ${thisstyle[3]}">促销</span></td>
-                                        <td class="good_time">${new Date(item.time).toLocaleString()}</td>
+                                        <td class="category_check"><input type="checkbox"></td>
+                                        <td class="category_id">${item.id}</td>
+                                        <td class="category_name">${item.classname}</td>
+                                        <td class="category_remarks">${item.remarks}</td>
                                         <td class="operation">
                                             <button type="button" class="btn btn-info edit">修改</button>
                                             <button type="button" class="btn btn-danger remove">删除</button>
-                                            <button type="button" class="btn ${putawayStyle} putaway" data-id="${item.status}">${putawayStr}</button>
                                         </td>
                                     </tr>`;
                         }).join('');
@@ -180,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
                             }
                         } else {
-
                             if (page > 5) {
                                 pageSGroup = pageSGroup + '<span class="morePages">...</span>';
                             }
@@ -204,15 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         downPageTotal.innerHTML = pageTotal = data.pages;
                         //输入框的值设为当前页码
                         inputPage.value = page;
-                        resizeHeight();
 
-                    } else {
-                        tbody.innerHTML = "<tr><td colspan='10' class='text-center'>暂无当前数据</td></tr>";
-                        pageGroup.innerHTML = "";
-                        downPageTotal.innerHTML = "0";
-                        inputPage.value = "0";
+                        searchKey = true;
+                        resizeHeight();
                     }
-                    searchKey = true;
                 }
             }
             xhr.open('get', url, true);
@@ -222,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //登出
         logout.onclick = () => {
             let issure = confirm('你确定要登出吗？');
-            if(issure){
+            if (issure) {
                 window.sessionStorage.clear(); //清除session值
                 location.href = '../login.html';
             }
@@ -231,8 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //模糊查询
         search.onclick = () => {
             let searchCon = searchInput.value.trim();
-            //确定时设置类别
-            thisClass = checkClass.value ? checkClass.value : 0;
             //设置开关防止多次请求
             // console.log(searchKey);
             if (searchKey) {
@@ -248,39 +185,89 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        //添加商品
-        addGood.onclick = () => {
-            location.href = './insert_good.html'; //跳转到添加商品页面
+        //添加分类
+        addCategory.onclick = () => {
+            $('#ModalCenter').modal('show');
+            $('#classHelp').hide();
         }
 
+        $('#ModalCenter .saveClass').click(function(){
+            let key = true;
+            let classCon = $.trim($('#InputClass').val());
+            if(classCon){
+                thisRequire = classCon;
+                $.ajax({
+                    type:"get",
+                    url:`/category`,
+                    data:{
+                        type:"selectOne",
+                        thisRequire
+                    },
+                    async:true,
+                    success:function(data){
+                        console.log(data.code);
+                        if(data.code == "0"){
+                            $.ajax({
+                                type:"post",
+                                async:true,
+                                url:'/category',
+                                data:{
+                                    type:'insert',
+                                    data:classCon
+                                },
+                                success:function(data){
+                                    if(data.code == "1"){
+                                        $('#ModalCenter').modal('hide');
+                                        renderTable();
+                                    } else {
+                                        $('#classHelp').html('添加失败');
+                                        $('#classHelp').show(500);
+                                    }
+                                }
+                            });
+                        } else {
+                            console.log(1);
+                            $('#classHelp').html('该类名已存在');
+                            $('#classHelp').show(500);
+                        }
+                    }
+                });
+            } else {
+                $('#classHelp').html('输入内容不能为空');
+                $('#classHelp').show(500);
+            }
+            
+            //查询类名是否存在
+        });
+        // $('#addCategory').model('modal');
         //全选
         checkAll.onclick = function () {
-            $('tbody .good_check').find('input').prop('checked', $(this).prop('checked'));
+            $('tbody .category_check').find('input').prop('checked', $(this).prop('checked'));
         }
 
         //单选取消选框时 全选取消
-        $('tbody').on('click', '.good_check input', function () {
+        $('tbody').on('click', '.category_check input', function () {
             // console.log($(this).prop('checked'));
             if ($(this).prop('checked')) {
                 let i = 0;
-                $('tbody .good_check').find('input').each(function () {
+                $('tbody .category_check').find('input').each(function () {
                     if ($(this).prop('checked') === true) {
                         i++;
                     }
                 });
                 // console.log($('tbody .good_check').find('input').length);
-                if (i == $('tbody .good_check').find('input').length) { //所有勾选后 全选勾上
-                    $('thead .good_check').find('input').prop('checked', true);
+                if (i == $('tbody .category_check').find('input').length) { //所有勾选后 全选勾上
+                    $('thead .category_check').find('input').prop('checked', true);
                 }
             } else {
-                $('thead .good_check').find('input').prop('checked', false); //一勾选取消 全选取消
+                $('thead .category_check').find('input').prop('checked', false); //一勾选取消 全选取消
             }
         });
 
-        //商品批量删除
-        function deleteTr(allGoodId) {
+        //分类批量删除
+        function deleteTr(allId) {
             let xhr = new XMLHttpRequest();
-            let url = `/goodlist?type=delete&allGoodId=${allGoodId}`;
+            let url = `/category?type=delete&allId=${allId}`;
             xhr.onload = () => {
                 if (statusCode.indexOf(xhr.status)) {
                     let data = JSON.parse(xhr.responseText);
@@ -294,20 +281,20 @@ document.addEventListener('DOMContentLoaded', () => {
             xhr.send();
         }
         removeMove.onclick = () => {
-            let allGoodId = '';
+            let allId = '';
             for (let i = 0; i < checkboxs.length; i++) {
                 //判断是否被选中
                 if (checkboxs[i].checked) {
                     let id = checkboxs[i].parentNode.nextElementSibling.innerHTML;
-                    allGoodId += id + "-";
+                    allId += id + "-";
                 }
             }
-            allGoodId = allGoodId.slice(0, -1); //id集合
-            console.log(checkboxs.length, allGoodId);
-            if (allGoodId) {
+            allId = allId.slice(0, -1); //id集合
+            // console.log(checkboxs.length, allId);
+            if (allId) {
                 let tips = confirm("你确定要删除勾选的商品吗?");
                 if (tips) {
-                    deleteTr(allGoodId);
+                    // deleteTr(allId);
                 }
             } else {
                 alert('没有勾选任何商品');
@@ -315,101 +302,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //排序
-        $('.good_list .orderby').data('key', true);
-        $('.good_list .orderby').eq(0).data('key', false); //默认id排序升序
-        $('.good_list .orderby').click(function () {
-            $('.good_list .orderby').removeClass('activeAsc');
-            $('.good_list .orderby').removeClass('activeDesc');
-            let thiskey = $(this).data('key'); //记录当前的开关状态 
-            //当切换的时候 所有其他的排序转会升序
-            $('.good_list .orderby').data('key', true);
-
-            $(this).data('key', thiskey);
-            if ($(this).data('key')) {
-                sort = 'desc';
+        $('.category_list .orderby').click(function(){
+            if($(this).hasClass('activeDesc')){
                 $(this).removeClass('activeDesc');
                 $(this).addClass('activeAsc');
-            } else {
                 sort = 'asc';
+            } else {
                 $(this).removeClass('activeAsc');
                 $(this).addClass('activeDesc');
+                sort = 'desc';
             }
-            console.log(sort);
-            $(this).data('key', !$(this).data('key')); //取反
-            console.log($(this).index());
-            switch ($(this).index()) {
-                case 1:
-                    orderby = 'id';
-                    break;
-                case 3:
-                    orderby = 'class';
-                    break;
-                case 4:
-                    orderby = 'old_price';
-                    break;
-                case 5:
-                    orderby = 'new_price';
-                    break;
-                case 6:
-                    orderby = 'num';
-                    break;
-                case 8:
-                    orderby = 'time';
-                    break;
-            }
-            renderTable();
+            renderTable(); //渲染
         });
 
         //单行删除
         $('tbody').on('click', '.remove', function () {
-            let thisGoodId = $(this).parent().parent().find('.good_id').html();
-            if (thisGoodId) {
+            let thisId = $(this).parent().parent().find('.good_id').html();
+            if (thisId) {
                 let issure = confirm("您确定删除这条数据吗?");
                 if (issure) {
-                    deleteTr(thisGoodId);
+                    deleteTr(thisId);
                 }
             }
         });
 
-        //上架
-        $('tbody').on('click', '.putaway', function () {
-            let thisGoodId = $(this).parent().parent().find('.good_id').html();
-            let data_id = $(this).attr("data-id").slice(1); //获取当前状态码
-            // console.log(data_id);
-            let putStatus = 0; //下架状态
-            if ($(this).hasClass('btn-success')) { //未上架
-                putStatus = 1;
-            } else {
-                putStatus = 0;
-            }
-            let issure;
-            if (putStatus) {
-                issure = confirm('确定要上架该商品吗？');
-            } else {
-                issure = confirm('确定要下架该商品吗？');
-            }
-            putStatus = putStatus + data_id; //拼接状态
-            if (issure) {
-                $.ajax({
-                    type: "post",
-                    async: true,
-                    url: "/goodlist",
-                    data: {
-                        id: thisGoodId,
-                        type: 'updateStatus',
-                        putStatus
-                    },
-                    success: function (data) {
-                        console.log(data);
-                        if (data.code == "1") {
-                            renderTable();
-                        }
-                    }
-                });
-            }
-        });
-
-        //表格底部功能
+                //表格底部功能
         //页码点击
         $('.pagination').on('click', '.pageBtn', function () {
             page = $(this).html() * 1;
@@ -430,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $('#inputState').change(function () {
             // console.log(this.selectedIndex+1);
             datas = (this.selectedIndex + 1) * 10;
-            console.log();
             page = 1;
             renderTable();
         });
@@ -451,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 alert('请输入数字');
             }
-
         }
     }
-});
+})
