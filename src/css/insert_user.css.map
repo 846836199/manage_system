@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,QAAS,GACL,MAAM,EAAE,IAAI;;AAEhB,MAAO,GACH,UAAU,EAAE,MAAM;;AAEtB,KAAM,GACF,aAAa,EAAE,MAAM",
+"mappings": "AAAA,QAAS;EACL,MAAM,EAAE,IAAI;;AAEhB,MAAO;EACH,UAAU,EAAE,MAAM;;AAEtB,KAAM;EACF,aAAa,EAAE,MAAM",
 "sources": ["../sass/insert_user.scss"],
 "names": [],
 "file": "insert_user.css"

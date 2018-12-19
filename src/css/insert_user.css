@@ -1,7 +1,10 @@
-textarea { resize: none; }
+textarea {
+  resize: none; }
 
-button { margin-top: 0.9rem; }
+button {
+  margin-top: 0.9rem; }
 
-input { margin-bottom: 0.5rem; }
+input {
+  margin-bottom: 0.5rem; }
 
 /*# sourceMappingURL=insert_user.css.map */
