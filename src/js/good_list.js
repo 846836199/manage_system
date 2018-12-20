@@ -98,10 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                             let thisstatus = item.status.split('-');
                             let thisstyle = [];
-                            let putawayStyle = 'badge-warning'; //已上架
+                            let putawayStyle = 'btn-outline-warning'; //已上架
                             let putawayStr = '下架';
                             if (thisstatus[0] == "0") {
-                                putawayStyle = 'btn-success'; //未上架
+                                putawayStyle = 'btn-outline-success'; //未上架
                                 putawayStr = '上架';
                             }
                             // thisstatus = thisstatus.split('-');  上架 热卖 推荐 促销
@@ -125,9 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <td class="good_status"><span class="badge ${thisstyle[0]}">上架</span> <span class="badge ${thisstyle[1]}">热卖</span> <span class="badge ${thisstyle[2]}">推荐</span> <span class="badge ${thisstyle[3]}">促销</span></td>
                                         <td class="good_time">${new Date(item.time).toLocaleString()}</td>
                                         <td class="operation">
-                                            <button type="button" class="btn btn-info edit">修改</button>
-                                            <button type="button" class="btn btn-danger remove">删除</button>
-                                            <button type="button" class="btn ${putawayStyle} putaway" data-id="${item.status}">${putawayStr}</button>
+                                            <button type="button" class="btn btn-outline-info btn-sm edit">修改</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm remove">删除</button>
+                                            <button type="button" class="btn ${putawayStyle} btn-sm putaway" data-id="${item.status}">${putawayStr}</button>
                                         </td>
                                     </tr>`;
                         }).join('');
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let data_id = $(this).attr("data-id").slice(1); //获取当前状态码
             // console.log(data_id);
             let putStatus = 0; //下架状态
-            if ($(this).hasClass('btn-success')) { //未上架
+            if ($(this).hasClass('btn-outline-success')) { //未上架
                 putStatus = 1;
             } else {
                 putStatus = 0;
