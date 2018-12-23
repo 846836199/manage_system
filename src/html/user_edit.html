@@ -1,12 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Edit</title>
+    <title>Insert User</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/center.css">
+    <link rel="stylesheet" href="../css/insert_user.css">
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+        <div class="row left">
+            <div class="col-md-2">
+                <h1>后台管理系统</h1>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                    商品管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="./good_list.html">商品列表</a></li>
+                                    <li class="list-group-item"><a href="#">商品分类</a></li>
+                                    <li class="list-group-item"><a href="#">添加商品</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    用户管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="user_list.html">用户列表</a></li>
+                                    <li class="list-group-item"><a href="insert_user.html">添加用户</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    订单管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="./order_form.html">订单列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12 navs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">首页</a></li>
+                                <li class="breadcrumb-item"><a href="#">用户管理</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">用户修改</li>
+                                <li class="right"><a href="../login.html">退出</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="username">用户名：</label>
+                                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                                        placeholder="请输入用户名">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="city">城市：</label>
+                                    <input type="text" class="form-control" id="city" aria-describedby="emailHelp"
+                                        placeholder="请输入城市">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="phonenumber">手机号码：</label>
+                                    <input type="text" class="form-control" id="phonenumber" aria-describedby="emailHelp"
+                                        placeholder="11位手机号码">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="gender">性别：</label>
+                                    <select class="form-control" id="gender">
+                                        <option value="none" selected>请选择</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                        <option value="秘密">秘密</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="birthday">生日：</label>
+                                    <input type="text" class="form-control" id="birthday" aria-describedby="emailHelp"
+                                        placeholder="yyyy/mm/dd">
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="email">邮箱地址：</label>
+                                    <input type="text" class="form-control" id="email" aria-describedby="emailHelp"
+                                        placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="note">备注：</label>
+                                    <textarea class="form-control" id="note" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-success btn-lg btn-block" id="affirm">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="../assets/jquery-1.10.1.min.js"></script>
+<script src="../assets/popper.js/dist/umd/popper.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.js"></script>
+<script src="../js/user_edit.js"></script>
+
 </html>

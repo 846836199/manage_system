@@ -35,15 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let downPageTotal = tablePage.querySelector('.pageTotal'); //页总页数
     let inputPage = tablePage.querySelector('.page'); //输入的页码
     let pageGroup = tablePage.querySelector('.pagination'); //页码的盒子
-    let thisClassChange = false;
-
+    let Classtype;
+    let ClassId; //当前类名的id
     //判断是否登录 
     if (isLogin) {
         //设置用户名
         adminName.innerHTML = isLogin;
         runAll();
     } else {
-        location.href= '../login.html';
+        location.href = '../login.html';
     }
 
     //页面功能、渲染
@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <td class="category_name">${item.classname}</td>
                                         <td class="category_remarks">${item.remarks}</td>
                                         <td class="operation">
-                                            <button type="button" class="btn btn-info edit">修改</button>
-                                            <button type="button" class="btn btn-danger remove">删除</button>
+                                            <button type="button" class="btn btn-outline-info btn-sm edit">修改</button>
+                                            <button type="button" class="btn btn-outline-danger btn-sm remove">删除</button>
                                         </td>
                                     </tr>`;
                         }).join('');
                         tbody.innerHTML = html;
-                        checkboxs = tbody.querySelectorAll('.good_check input');
+                        checkboxs = tbody.querySelectorAll('.category_check input');
 
                         //表格下部页码渲染
                         //一页显示多少条
@@ -191,61 +191,96 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        //模块框隐藏时触发
+        $('#ModalCenter').on('hidden.bs.modal', function (e) {
+            $('#InputClass').val("");
+            $('#remarks').val(""); //归零
+            $('#classHelp').hide(); //错误提示隐藏
+        })
+
         //添加分类
         addCategory.onclick = () => {
-            thisClassChange = false;
-            $('#ModalCenter').modal('show');
-            $('#classHelp').hide();
+            ClassId = '';  //添加分类 搜索分类无需过滤id
+            Classtype = 'insert';  //用于插入
+            $("#ModalLongTitle").html('添加类别'); //修改标题
+            $('#ModalCenter').modal('show'); //显示模态框
         }
 
-        $('#ModalCenter .saveClass').click(function(){
-            // let key = true;
-            let classCon = $.trim($('#InputClass').val());
-            if(classCon){
-                thisRequire = classCon;
-                $.ajax({
-                    type:"get",
-                    url:`/category`,
-                    data:{
-                        type:"selectOne",
-                        thisRequire
-                    },
-                    async:true,
-                    success:function(data){
-                        console.log(data.code);
-                        if(data.code == "0"){
-                            $.ajax({
-                                type:"post",
-                                async:true,
-                                url:'/category',
-                                data:{
-                                    type:'insert',
-                                    data:classCon
-                                },
-                                success:function(data){
-                                    if(data.code == "1"){
-                                        $('#ModalCenter').modal('hide');
-                                        renderTable();
-                                    } else {
-                                        $('#classHelp').html('添加失败');
-                                        $('#classHelp').show(500);
-                                    }
-                                }
-                            });
+        //判断类名是否存在 不存在则保存
+        function judgeCategory(classCon, thisremarks, Classtype, ClassId) {
+            if (!thisremarks) {
+                thisremarks = "无";   //如果备注为空，设置为空
+            }
+            $.ajax({   //判断类名是否存在  Classid存在的话，过滤ClassId 的类名
+                type: 'get',
+                url: '/category',
+                data: {
+                    type:'selectOne',
+                    classCon,
+                    ClassId
+                },
+                success: function (data) {
+                    if (data.code == "0") {  //类名不存在  则可以插入更新
+                        let data;
+                        if (Classtype == 'insert') {  //插入   需要的参数
+                            data = {
+                                type:Classtype,
+                                classCon,
+                                thisremarks
+                            }
                         } else {
-                            console.log(1);
-                            $('#classHelp').html('该类名已存在');
-                            $('#classHelp').show(500);
+                            data = {             //更新 需要的参数
+                                type:Classtype,
+                                classCon,
+                                thisremarks,
+                                ClassId
+                            }
                         }
+                        $.ajax({
+                            type: 'post',
+                            url: '/category',
+                            data,
+                            success: function (data) {  //成功
+                                if (data.code == "1") {   //重新渲染一次
+                                    renderTable();
+                                    $('#ModalCenter').modal('hide');  //隐藏模态框
+                                }
+                            }
+                        });
+                    } else {
+                        $('#classHelp').html('类名已存在');
+                        $('#classHelp').show(500);
                     }
-                });
+                }
+            });
+        }
+
+
+        $('#ModalCenter .saveClass').click(function () {
+            let classCon = $.trim($('#InputClass').val());
+            let thisremarks = $.trim($('#remarks').val());
+            // console.log(classCon, thisremarks);
+            if (classCon) { //不为空时 并且 内容不和原名相同
+                judgeCategory(classCon, thisremarks,Classtype,ClassId);
             } else {
                 $('#classHelp').html('输入内容不能为空');
                 $('#classHelp').show(500);
             }
-            
-            //查询类名是否存在
         });
+
+
+        //修改
+        $('tbody').on('click', '.edit', function () {
+            let re = $(this).parent().parent().find('.category_remarks').html();  //获取当前备注
+            let oldName = $(this).parent().parent().find('.category_name').html(); //获取当前类名
+            $("#ModalLongTitle").html('修改类别');  //修改模态框标题
+            $('#ModalCenter').modal('show');  //模态框显示
+            ClassId = $(this).parent().parent().find('.category_id').html();  //获取当前类别id  用于过滤当前id的类名搜索判断是否类名存在
+            Classtype = 'update';  //用于更新
+            $('#InputClass').val(oldName);   //默认框设值
+            $('#remarks').val(re);
+        });
+
         // $('#addCategory').model('modal');
         //全选
         checkAll.onclick = function () {
@@ -294,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (checkboxs[i].checked) {
                     let id = checkboxs[i].parentNode.nextElementSibling.innerHTML;
                     allId += id + "-";
+
                 }
             }
             allId = allId.slice(0, -1); //id集合
@@ -301,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (allId) {
                 let tips = confirm("你确定要删除勾选的商品吗?");
                 if (tips) {
-                    // deleteTr(allId);
+                    deleteTr(allId);
                 }
             } else {
                 alert('没有勾选任何商品');
@@ -309,8 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //排序
-        $('.category_list .orderby').click(function(){
-            if($(this).hasClass('activeDesc')){
+        $('.category_list .orderby').click(function () {
+            if ($(this).hasClass('activeDesc')) {
                 $(this).removeClass('activeDesc');
                 $(this).addClass('activeAsc');
                 sort = 'asc';
@@ -322,9 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTable(); //渲染
         });
 
+
         //单行删除
         $('tbody').on('click', '.remove', function () {
-            let thisId = $(this).parent().parent().find('.good_id').html();
+            let thisId = $(this).parent().parent().find('.category_id').html();
             if (thisId) {
                 let issure = confirm("您确定删除这条数据吗?");
                 if (issure) {
@@ -333,12 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        //修改
-        $('tbody').on('click', '.edit', function () {
-            thisClassChange = true;
-        });
-
-                //表格底部功能
+        //表格底部功能
         //页码点击
         $('.pagination').on('click', '.pageBtn', function () {
             page = $(this).html() * 1;

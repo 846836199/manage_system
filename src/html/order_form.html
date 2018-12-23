@@ -1,12 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Order Form</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/center.css">
+    <!-- <link rel="stylesheet" href="../css/order_form.css"> -->
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+        <div class="row left">
+            <div class="col-md-2">
+                <h1>后台管理系统</h1>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                    商品管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="./good_list.html">商品列表</a></li>
+                                    <li class="list-group-item"><a href="#">商品分类</a></li>
+                                    <li class="list-group-item"><a href="#">添加商品</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="true" aria-controls="collapseTwo">
+                                    用户管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="user_list.html">用户列表</a></li>
+                                    <li class="list-group-item"><a href="insert_user.html">添加用户</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    订单管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="./order_form.html">订单列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12 navs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">首页</a></li>
+                                <li class="breadcrumb-item"><a href="#">订单管理</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">订单列表</li>
+                                <li class="right"><a href="../login.html">退出</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-12" id="content">
+                        <table class="table table-bordered0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"><input type="checkbox" id="all"></th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">商品名称</th>
+                                    <th scope="col">价格</th>
+                                    <th scope="col">数量</th>
+                                    <th scope="col">运费</th>
+                                    <th scope="col">商品总额</th>
+                                    <th scope="col">订单总额</th>
+                                    <th scope="col">下单时间</th>
+                                    <th scope="col">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>1</td>
+                                    <td>潮男秋冬季裤子男韩版潮流秋季加绒运动男士休闲裤宽松潮牌束脚工装裤 深灰色 M</td>
+                                    <td>233</td>
+                                    <td>2</td>
+                                    <td>20</td>
+                                    <td>466</td>
+                                    <td>480</td>
+                                    <td>2008-09-12</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning del"><img src="../css/img/del.png"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>2</td>
+                                    <td>裤子男韩版潮流秋冬季运动裤男士加绒宽松休闲束脚长裤潮牌工装裤 黑色 M</td>
+                                    <td>666</td>
+                                    <td>2</td>
+                                    <td>20</td>
+                                    <td>1332</td>
+                                    <td>1352</td>
+                                    <td>2008-09-12</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning del"><img src="../css/img/del.png"></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="../assets/jquery-1.10.1.min.js"></script>
+<script src="../assets/popper.js/dist/umd/popper.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.js"></script>
+<!-- <script src="../js/order_form.js"></script> -->
+
 </html>
