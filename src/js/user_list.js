@@ -10,8 +10,16 @@ $(function () {
                 'nums': 15,
             },
             success: function (res) {
-                console.log(res.data);
-                let data = res.data;
+                let data = res.datas;
+                $('.pagination').html('');
+                for (let i=0; i<res.qty*1; i++) {
+                    $('.pagination').append(`
+                        <li class="page-item"><a class="page-link" href="#">${i+1}</a></li>
+                    `);
+                }
+                $(`.pagination li:eq(${res.page - 1})`).addClass('active');
+
+                $('.table tbody').html('');
                 data.forEach((item, idx) => {
                     $('.table tbody').append(`
                         <tr id='${item.id}'>
@@ -35,6 +43,17 @@ $(function () {
                 $('.del').click(function () {
                     if (confirm("确认删除？")) {
                         $(this).parent().parent().remove();
+                        $.ajax({
+                            type: "GET",
+                            url: "/userlist",
+                            data: {
+                                type: 'del',
+                                ids: JSON.stringify([$(this).parent().parent().attr('id')])
+                            },
+                            success: function (res) {
+                                console.log(res);
+                            }
+                        });
                     }
                 });
 
@@ -50,6 +69,13 @@ $(function () {
                     } else {
                         $('#all').prop('checked', false);
                     }
+                });
+
+                $('.pagination li').click(function() {
+                    $('.pagination li').removeClass('active');
+                    $(this).addClass('active');
+                    let page = $(this).children().text();
+                    load_data('search', page);
                 });
 
             }
@@ -74,9 +100,28 @@ $(function () {
             $('#delMore .modal-body').text('是否删除已勾选项目');
             $('#delMore .btn-primary').text('删除');
             $('#delMore .btn-primary').click(function () {
+                let arr = $('table tbody tr input[type=checkbox]:checked').parent().parent().toArray();
+                let idArr = [];
+                arr.forEach(function(item, idx) {
+                    idArr.push($(item).attr('id'));
+                });
+
+                $.ajax({
+                    type: "GET",
+                    url: "/userlist",
+                    data: {
+                        type: 'del',
+                        ids: JSON.stringify(idArr)
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    }
+                });
+
                 $('table tbody tr input[type=checkbox]:checked').parent().parent().remove();
                 $('#delMore').modal('hide');
                 $('#all').prop('checked', false);
+                load_data('search', 1);
             });
         }
     });
