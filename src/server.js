@@ -1,5 +1,5 @@
 const express = require('express');
-const _sql = require('./router/connectSql');
+// const _sql = require('./router/connectSql');
 //引入配置文件
 const {port,host,root} = require('./router/config.json');
 

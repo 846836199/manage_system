@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let downPageTotal = tablePage.querySelector('.pageTotal'); //页总页数
     let inputPage = tablePage.querySelector('.page'); //输入的页码
     let pageGroup = tablePage.querySelector('.pagination'); //页码的盒子
+    let thisClassChange = false;
 
     //判断是否登录 
     if (isLogin) {
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         adminName.innerHTML = isLogin;
         runAll();
     } else {
-
+        location.href= '../login.html';
     }
 
     //页面功能、渲染
@@ -51,8 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let ofTop = goodlist.offsetTop;
             let goodHei = goodlist.offsetHeight;
             let navHei = nav.offsetHeight;
-            document.documentElement.style.height = document.body.style.height = (ofTop + navHei + goodHei) + 'px';
-            // console.log(ofTop+navHei+goodHei);
+            let clientH = window.innerHeight;
+            console.log(clientH,(ofTop + navHei + goodHei));
+            if((ofTop + navHei + goodHei)>clientH){
+                document.documentElement.style.height = (ofTop + navHei + goodHei) + 'px';
+            } else {
+                document.documentElement.style.height = clientH + 'px';
+            }
         }
 
         renderTable();
@@ -187,12 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //添加分类
         addCategory.onclick = () => {
+            thisClassChange = false;
             $('#ModalCenter').modal('show');
             $('#classHelp').hide();
         }
 
         $('#ModalCenter .saveClass').click(function(){
-            let key = true;
+            // let key = true;
             let classCon = $.trim($('#InputClass').val());
             if(classCon){
                 thisRequire = classCon;
@@ -324,6 +331,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     deleteTr(thisId);
                 }
             }
+        });
+
+        //修改
+        $('tbody').on('click', '.edit', function () {
+            thisClassChange = true;
         });
 
                 //表格底部功能

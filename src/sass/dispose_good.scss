@@ -1,5 +1,5 @@
-html,
-body,
+// html,
+// body,
 .container-fluid,
 .left,
 .col-md-2 {
@@ -11,13 +11,9 @@ body,
 
     h1 {
         color: #C2C2C2;
-        font-size: 16px;
-        // text-align: center;
-        line-height: 30px;
-        padding:10px 0;
-        img{
-            width: 50px;
-        }
+        font-size: 18px;
+        text-align: center;
+        line-height: 55px;
     }
 
     div {
@@ -76,49 +72,41 @@ body,
     }
 }
 
-.topForm {
-    width: 100%;
+.goodPic{
+    height: 155px;
+    >div{
+        width: 100px;
+        height: 155px;
+        vertical-align: middle;
+        display: inline-block;
+        button{
+            display: block;
+            margin:0 auto;
+        }
+        .imgBox{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+        }
+    }
+    img{
+        display: block;
+        width: 100px;
+        height: 100px;
+    }
+}
+.addBox{
+    position: relative;
+    width: 100px;
+    height: 155px;
+    img{
+        position: absolute;
+        top: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+    }
 }
 
-.table{
-    font-size: 0.8rem;
-}
-
-.category_check{
-    width: 30px;
-    text-align: center;
-}
-
-.operation .btn{
-    font-size: 0.8rem;
-}
-
-.morePages{
-    padding:0 14px;
-    overflow: hidden;
-    line-height: 40px;
-}
-
-//排序
-.orderby{
-    cursor: pointer;
-}
-.activeAsc {
-    color: #fff;
-    background: #df815b;
-}
-.activeDesc {
-    color: #fff;
-    background: #96b7c6;
-}
-.remarks{
-    width: 340px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-//模态框
-#classHelp{
-    display:none;
+#img-upload{
+    display: none;
 }

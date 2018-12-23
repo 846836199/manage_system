@@ -23,16 +23,16 @@ exports.select = sql => {
                     return;
                 }
 
-                if (rows.length) {
-                    data = {
-                        code: 1,
-                        data: rows
-                    }
-                } else {
+                if (rows.length<=0) {
                     data = {
                         code: 0,
                         data: 'none',
                         rows
+                    }
+                } else {
+                    data = {
+                        code: 1,
+                        data: rows
                     }
                 }
                 resolve(data);

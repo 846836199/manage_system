@@ -1,5 +1,3 @@
-html,
-body,
 .container-fluid,
 .left,
 .col-md-2 {
@@ -11,12 +9,9 @@ body,
 }
 .left .col-md-2 h1 {
   color: #C2C2C2;
-  font-size: 16px;
-  line-height: 30px;
-  padding: 10px 0;
-}
-.left .col-md-2 h1 img {
-  width: 50px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 55px;
 }
 .left .col-md-2 div {
   background-color: #20222a;
@@ -64,52 +59,44 @@ body,
   font-size: 0.5rem;
 }
 
-.topForm {
-  width: 100%;
+.goodPic {
+  height: 155px;
+}
+.goodPic > div {
+  width: 100px;
+  height: 155px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.goodPic > div button {
+  display: block;
+  margin: 0 auto;
+}
+.goodPic > div .imgBox {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.goodPic img {
+  display: block;
+  width: 100px;
+  height: 100px;
 }
 
-.table {
-  font-size: 0.8rem;
+.addBox {
+  position: relative;
+  width: 100px;
+  height: 155px;
 }
-
-.category_check {
-  width: 30px;
-  text-align: center;
-}
-
-.operation .btn {
-  font-size: 0.8rem;
-}
-
-.morePages {
-  padding: 0 14px;
-  overflow: hidden;
-  line-height: 40px;
-}
-
-.orderby {
+.addBox img {
+  position: absolute;
+  top: 50%;
   cursor: pointer;
+  transform: translateY(-50%);
 }
 
-.activeAsc {
-  color: #fff;
-  background: #df815b;
-}
-
-.activeDesc {
-  color: #fff;
-  background: #96b7c6;
-}
-
-.remarks {
-  width: 340px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#classHelp {
+#img-upload {
   display: none;
 }
 
-/*# sourceMappingURL=good_category.css.map */
+/*# sourceMappingURL=dispose_good.css.map */

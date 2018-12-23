@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let checkClass = document.querySelector('#checkClass'); //选择分类
     let search = document.querySelector('#searchBtn'); //查询按钮
     let searchKey = true; //查询开关
-    let addGood = document.querySelector('#addGood'); //添加商品
+    // let addGood = document.querySelector('#addGood'); //添加商品
     let removeMove = document.querySelector('#removeMove'); //删除多项商品
     removeMove.key = true;
     // console.log(removeMove.key);
@@ -53,13 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //页面功能、渲染
-    function runAll(){
+    function runAll() {
         function resizeHeight() {
             let ofTop = goodlist.offsetTop;
             let goodHei = goodlist.offsetHeight;
             let navHei = nav.offsetHeight;
-            document.documentElement.style.height = document.body.style.height = (ofTop + navHei + goodHei) + 'px';
-            // console.log(ofTop+navHei+goodHei);
+            let clientH = window.innerHeight;
+            // console.log(clientH,(ofTop + navHei + goodHei));
+            if ((ofTop + navHei + goodHei) > clientH) {
+                document.documentElement.style.height = (ofTop + navHei + goodHei) + 'px';
+            } else {
+                document.documentElement.style.height = clientH + 'px';
+            }
         }
         selectGoodClass();
 
@@ -70,16 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: "type=goodselect",
                 success: function (data) {
                     // let res = JSON.parse(data);
-                    data.data.forEach(element => {
-                        allClass.push(element);
-                    });
-                    checkClass.innerHTML += allClass.map(item => {
-                        return `<option value="${item.id}">${item.classname}</option>`;
-                    }).join('');
+                    console.log(data);
+                    if (data.code == "1") {
+                        data.data.forEach(element => {
+                            allClass.push(element);
+                        });
+                        checkClass.innerHTML += allClass.map(item => {
+                            return `<option value="${item.id}">${item.classname}</option>`;
+                        }).join('');
+                        renderTable();
+                    }
                 }
             });
         }
-        renderTable();
 
         function renderTable() {
             let xhr = new XMLHttpRequest();
@@ -204,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         downPageTotal.innerHTML = pageTotal = data.pages;
                         //输入框的值设为当前页码
                         inputPage.value = page;
-                        resizeHeight();
 
                     } else {
                         tbody.innerHTML = "<tr><td colspan='10' class='text-center'>暂无当前数据</td></tr>";
@@ -212,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         downPageTotal.innerHTML = "0";
                         inputPage.value = "0";
                     }
+                    resizeHeight();
                     searchKey = true;
                 }
             }
@@ -222,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //登出
         logout.onclick = () => {
             let issure = confirm('你确定要登出吗？');
-            if(issure){
+            if (issure) {
                 window.sessionStorage.clear(); //清除session值
                 location.href = '../login.html';
             }
@@ -249,9 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //添加商品
-        addGood.onclick = () => {
-            location.href = './insert_good.html'; //跳转到添加商品页面
-        }
+        $('.addGood').click(() => {
+            sessionStorage.removeItem('goodId');
+            window.sessionStorage.setItem("method", 0); //添加标识到session
+            location.href = './dispose_good.html'; //跳转到添加商品页面
+        });
 
         //全选
         checkAll.onclick = function () {
@@ -407,6 +417,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+        });
+
+        //修改商品
+        $('tbody').on('click', '.edit', function () {
+            let thisGood = $(this).parent().parent().find('.good_id').html(); //获取当前id;
+            window.sessionStorage.setItem("goodId", thisGood); //添加标识到session
+            window.sessionStorage.setItem("method", 1);
+            location.href = './dispose_good.html'; //跳转到添加商品页面
         });
 
         //表格底部功能
