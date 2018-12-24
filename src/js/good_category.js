@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     //状态码
     let statusCode = ["200", "304"];
+    let h1 = document.querySelector('h1');
 
     //渲染的参数
     let page = 1; //页码
@@ -162,6 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             xhr.open('get', url, true);
             xhr.send();
+        }
+
+        h1.onclick = function(){
+            location.href = "./center.html";
         }
 
         //登出

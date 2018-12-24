@@ -13,8 +13,10 @@
 <body>
     <div class="container-fluid">
         <div class="row left">
-            <div class="col-md-2" id="common">
-                <h1>后台管理系统</h1>
+            <div class="col-md-2 table_left">
+                <h1>
+                    <img src="../css/img/logo.gif" alt="" class="mr-2">后台管理系统
+                </h1>
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header" id="headingOne">
@@ -71,15 +73,62 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 table_right">
                 <div class="row">
                     <div class="col-md-12 navs">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">首页</a></li>
-                                <li class="right"><a href="#">退出</a></li>
+                                <li class="right"><span class="admin"></span><button type="button" class="btn btn-warning logout">退出</button></li>
                             </ol>
                         </nav>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">商品</h5>
+                                <p class="card-text">共有 <span class="text-success">100</span> 件商品</p>
+                                <a href="./good_list.html" class="btn btn-primary">查看</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">用户</h5>
+                                <p class="card-text">共有 <span class="text-primary">100</span> 个用户</p>
+                                <a href="./user_list.html" class="btn btn-primary">查看</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <h5 class="card-header">订单管理</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">待处理订单<span class="text-danger mx-2">100</span>个</h5>
+                                <p class="card-text">请尽快处理</p>
+                                <a href="#" class="btn btn-primary">去处理</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                开发者
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p>The system was developed jointly by ZZF and LJC</p>
+                                    <footer class="blockquote-footer">To be or <cite title="Source Title">not to be</cite></footer>
+                                </blockquote>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,4 +138,6 @@
 <script src="../assets/jquery-1.10.1.min.js"></script>
 <script src="../assets/popper.js/dist/umd/popper.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.js"></script>
+<script src="../js/center.js"></script>
+
 </html>

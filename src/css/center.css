@@ -7,9 +7,13 @@ html, body, .container-fluid, .left, .col-md-2 {
 }
 .left .col-md-2 h1 {
   color: #C2C2C2;
-  font-size: 1.12rem;
-  text-align: center;
-  line-height: 3.4rem;
+  font-size: 16px;
+  line-height: 30px;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.left .col-md-2 h1 img {
+  width: 50px;
 }
 .left .col-md-2 div {
   background-color: #20222a;
@@ -38,50 +42,16 @@ html, body, .container-fluid, .left, .col-md-2 {
 }
 .navs ol .right {
   position: absolute;
-  right: 1.25rem;
+  right: 20px;
+  top: 8px;
 }
 
-.input-group {
-  margin: 1.25rem 0;
+.navs .admin {
+  margin-right: 5px;
+  vertical-align: middle;
 }
-.input-group .btn-secondary {
-  margin-left: 1.25rem;
-}
-
-table thead th:first-child {
-  text-align: center;
-}
-table tbody tr td:first-child, table tbody tr td:last-child {
-  text-align: center;
-}
-table td {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 12.5rem;
-  padding: 0.5rem;
-}
-table .col-md-6 {
-  padding: 0.12rem;
-  width: 2rem;
-}
-table a {
-  display: inline-block;
-  margin-left: 0.12rem;
-}
-table img {
-  width: 2rem;
-}
-
-#exampleModal {
-  color: #000;
-}
-#exampleModal .modal-content {
-  width: 51.25rem;
-}
-#exampleModal .modal-body {
-  height: 34rem;
-  overflow-y: auto;
+.navs .logout {
+  font-size: 0.5rem;
 }
 
 /*# sourceMappingURL=center.css.map */

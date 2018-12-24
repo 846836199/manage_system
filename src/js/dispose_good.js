@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     //状态码
     let statusCode = ["200", "304"];
+    let h1 = document.querySelector('h1');
     let thisid;
 
     //导航栏节点
@@ -56,6 +57,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
+        h1.onclick = function(){
+            location.href = "./center.html";
+        }
+
         //登出
         logout.onclick = () => {
             let issure = confirm('你确定要登出吗？');
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // console.log($('.formBox').height());
         function resizeHeight() {
             $('body').css({
-                height: ($('.formBox').height() + 20) + 'px'
+                height: ($('.formBox').height() + 100) + 'px'
             })
         }
 
@@ -101,20 +106,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     if(data.code == "1"){
                         // console.log(data)[0];
                         let res = data.data[0];
-                        console.log(res.img);
                         let html = `<div class="mr-4">
                                         <img src="${'../'+res.img}" alt="" class="img-thumbnail mb-2 thisimg">
                                         <button type="button" class="btn btn-danger btn-sm">删除</button>
                                     </div>`;
                         let thisStatus = res.status.split('-');
+                        console.log(thisStatus);
                         $('#goodName').val(res.name);
                         $('#newPrice').val(res.new_price);
                         $('#oldPrice').val(res.old_price);
                         $('#goodCategory').val(res.class);
                         $('.goodPic').html(html+$('.goodPic').html());
                         $('#repertory').val(res.num);
-                        $('.goodCheck').each(function(){
-                            if(thisStatus[$(this).index] == '1'){
+                        $('.goodCheck button').each(function(){
+                            if(thisStatus[$(this).index()] == '1'){
+                                $(this).removeClass('btn-outline-success');
                                 $(this).addClass('btn-success');
                             }
                         });;
@@ -126,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         $('#oldPrice').data('key', true); //销售价格
                         $('.goodPic').data('key', true); //图片
                         $('#repertory').data('key', true); //库存
-                
                         $('#describe').data('key', true); //商品描述
                     } else {
                         alert("获取商品信息失败！");
