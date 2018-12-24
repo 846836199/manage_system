@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-12-24 17:49:07
+Date: 2018-12-24 19:55:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,18 +40,19 @@ DROP TABLE IF EXISTS `goodclass`;
 CREATE TABLE `goodclass` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `classname` varchar(255) NOT NULL,
+  `remarks` varchar(255) DEFAULT '无',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goodclass
 -- ----------------------------
-INSERT INTO `goodclass` VALUES ('1', '上衣');
-INSERT INTO `goodclass` VALUES ('2', '裤子');
-INSERT INTO `goodclass` VALUES ('3', '鞋子');
-INSERT INTO `goodclass` VALUES ('4', '帽子');
-INSERT INTO `goodclass` VALUES ('5', '围巾');
-INSERT INTO `goodclass` VALUES ('6', '外套');
+INSERT INTO `goodclass` VALUES ('1', '上衣', '无');
+INSERT INTO `goodclass` VALUES ('2', '裤子', '无');
+INSERT INTO `goodclass` VALUES ('3', '鞋子', '无');
+INSERT INTO `goodclass` VALUES ('4', '帽子', '无');
+INSERT INTO `goodclass` VALUES ('5', '围巾', '无');
+INSERT INTO `goodclass` VALUES ('6', '外套', '无');
 
 -- ----------------------------
 -- Table structure for goods
@@ -927,7 +928,7 @@ CREATE TABLE `userlist` (
   `password` varchar(255) NOT NULL,
   `phoneNumber` varchar(12) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `birthday` varchar(255) DEFAULT NULL,
+  `birthday` varchar(255) DEFAULT '1999-10-10',
   `email` varchar(255) DEFAULT NULL,
   `note` varchar(255) DEFAULT NULL,
   `grade` int(255) DEFAULT NULL,
