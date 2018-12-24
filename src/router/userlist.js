@@ -17,15 +17,15 @@ Router.get("/", async (req, res) => {
 
             try {
                 data_01 = await _sql.select(sql_01);
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
             }
-            let datas = data_01.data.splice((page - 1)*nums, nums*1);
+            let datas = data_01.data.splice((page - 1) * nums, nums * 1);
             let qty = Math.ceil(data_01.data.length / nums);
             res.send({
-                'datas':datas,
-                'qty':qty,
-                'data':data_01,
+                'datas': datas,
+                'qty': qty,
+                'data': data_01,
                 'page': page
             });
             break;
@@ -41,7 +41,7 @@ Router.get("/", async (req, res) => {
             } catch (err) {
                 console.log(err);
             }
-            
+
             res.send(data_02);
             break;
         case "del":
@@ -49,7 +49,7 @@ Router.get("/", async (req, res) => {
                 ids
             } = req.query;
             let idArr = JSON.parse(ids);
-            for (let i=0; i<idArr.length; i++) {
+            for (let i = 0; i < idArr.length; i++) {
                 let sql_03 = `DELETE FROM userlist WHERE id = '${idArr[i]}'`;
                 try {
                     await _sql.delete(sql_03);
@@ -59,7 +59,7 @@ Router.get("/", async (req, res) => {
             }
             res.send();
             break;
-        case "insert":
+        case "update":
             let {
                 idx,
                 username,
@@ -87,6 +87,38 @@ Router.get("/", async (req, res) => {
             }
 
             res.send(data);
+            break;
+        case 'insert':
+            let {
+                i_username,
+                i_city,
+                i_psw,
+                i_phonenumber,
+                i_birthday,
+                i_email,
+                i_note,
+                i_gender
+            } = req.query;
+            console.log(
+                i_username,
+                i_city,
+                i_psw,
+                i_phonenumber,
+                i_birthday,
+                i_email,
+                i_note,
+                i_gender
+            )
+
+            let sql_05 = `INSERT INTO userlist (username,password,phoneNumber,gender,birthday,email,note,grade,city) VALUES ('${i_username}','${i_psw}','${i_phonenumber}','${i_gender}','${i_birthday}','${i_email}','${i_note}','${Math.floor(Math.random()*101).toString()}','${i_city}')`;
+            let msg;
+
+            try {
+                 msg = await _sql.select(sql_05);
+            } catch (err) {
+                console.log(err);
+            }
+            res.send(msg)
             break;
     }
 });

@@ -11,7 +11,7 @@
  Target Server Version : 50714
  File Encoding         : 65001
 
- Date: 23/12/2018 23:49:04
+ Date: 24/12/2018 16:13:18
 */
 
 SET NAMES utf8;
@@ -870,6 +870,38 @@ INSERT INTO `goods` VALUES (799, '春季2018新款马甲韩版棉衣背心男士
 INSERT INTO `goods` VALUES (800, '2018新款加厚加绒棉袄冬季男士外套个性棉衣修身韩版棉服潮流帅气 黑色 M', 483.00, 410.00, 2, '黑色,灰色,棕色', 'M,L,XL,2XL,3XL,4XL', 221, 371, '50.jpg', '2018-12-15 12:12:03', '0', 1);
 
 -- ----------------------------
+-- Table structure for order_form
+-- ----------------------------
+DROP TABLE IF EXISTS `order_form`;
+CREATE TABLE `order_form`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NOT NULL,
+  `price` varchar(10) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `nums` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `carriage` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_croatian_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of order_form
+-- ----------------------------
+INSERT INTO `order_form` VALUES (1, '冬季新款男鞋子男士潮鞋百搭休闲鞋帆布鞋韩版潮运动秋季板鞋 黑色 39', '173', '12', '19', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (2, '潮男秋冬季裤子男韩版潮流秋季加绒运动男士休闲裤宽松潮牌束脚工装裤 深灰色 M', '200', '19', '15', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (3, '裤子男韩版潮流秋冬季运动裤男士加绒宽松休闲束脚长裤潮牌工装裤 黑色 M', '112', '6', '14', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (4, '冬季新款男士牛仔外套加绒加厚保暖棉衣韩版修身潮流大码夹克 黑色 M', '173', '9', '7', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (5, '潮男鞋百搭潮鞋小白鞋高帮休闲鞋青少年运动学生板鞋6CM内增高男鞋8公分 白色 39', '427', '19', '16', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (6, '冬季新款男鞋子男士潮鞋百搭休闲鞋帆布鞋韩版潮运动秋季板鞋 黑色 40', '275', '18', '12', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (7, '潮男秋冬季裤子男韩版潮流秋季加绒运动男士休闲裤宽松潮牌束脚工装裤 深灰色 M', '314', '10', '17', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (8, '裤子男韩版潮流秋冬季运动裤男士加绒宽松休闲束脚长裤潮牌工装裤 黑色 M', '188', '13', '9', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (9, '冬季新款男士牛仔外套加绒加厚保暖棉衣韩版修身潮流大码夹克 黑色 M', '215', '11', '4', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (10, '潮男鞋百搭潮鞋小白鞋高帮休闲鞋青少年运动学生板鞋6CM内增高男鞋8公分 白色 40', '381', '13', '23', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (11, '冬季新款男鞋子男士潮鞋百搭休闲鞋帆布鞋韩版潮运动秋季板鞋 黑色 41', '412', '20', '11', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (12, '潮男秋冬季裤子男韩版潮流秋季加绒运动男士休闲裤宽松潮牌束脚工装裤 深灰色 M', '500', '19', '11', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (13, '裤子男韩版潮流秋冬季运动裤男士加绒宽松休闲束脚长裤潮牌工装裤 黑色 M', '138', '18', '1', '2018-12-24 15:21:27');
+INSERT INTO `order_form` VALUES (14, '冬季新款男士牛仔外套加绒加厚保暖棉衣韩版修身潮流大码夹克 黑色 M', '200', '12', '14', '2018-12-24 15:21:27');
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -904,14 +936,14 @@ CREATE TABLE `userlist`  (
   `city` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP(0),
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 51 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of userlist
 -- ----------------------------
 INSERT INTO `userlist` VALUES (1, 'QWER', 'abcd1234', '11111111111', '?', ' 1999-10-10', '', ' ???????', 37, ' ??', '2018-12-23 21:35:43');
-INSERT INTO `userlist` VALUES (2, 'asdf', 'abcd1234', '22222222222', '女', ' ', ' ', ' ', 22, ' ', '2018-12-23 20:41:50');
-INSERT INTO `userlist` VALUES (3, 'zxcv', 'abcd1234', '33333333333', '男', ' ', ' ', ' ', 45, ' ', '2018-12-23 20:41:50');
+INSERT INTO `userlist` VALUES (2, 'ASDF', 'abcd1234', '22222222222', '?', ' ', ' ', ' ', 22, ' ', '2018-12-24 09:42:10');
+INSERT INTO `userlist` VALUES (3, 'ZXCV', 'abcd1234', '33333333333', '?', '2007-07-19', ' ', ' ', 45, '??', '2018-12-24 09:43:44');
 INSERT INTO `userlist` VALUES (4, 'tyui', 'abcd1234', '44444444444', '女', ' ', ' ', ' ', 84, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (5, 'ghjk', 'abcd1234', '55555555555', '男', ' ', ' ', ' ', 16, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (6, 'bnml', 'abcd1234', '66666666666', '女', ' ', ' ', ' ', 41, ' ', '2018-12-23 20:41:50');
@@ -923,7 +955,6 @@ INSERT INTO `userlist` VALUES (11, 'tgb', 'abcd1234', '22222222222', '男', ' ',
 INSERT INTO `userlist` VALUES (12, 'yhn', 'abcd1234', '33333333333', '女', ' ', ' ', ' ', 56, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (13, 'ujm', 'abcd1234', '44444444444', '男', ' ', ' ', ' ', 91, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (14, 'ikl', 'abcd1234', '55555555555', '女', ' ', ' ', ' ', 81, ' ', '2018-12-23 20:41:50');
-INSERT INTO `userlist` VALUES (15, 'zse', 'abcd1234', '66666666666', '男', ' ', ' ', ' ', 4, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (16, 'qwer', 'abcd1234', '60634920634', '男', ' ', ' ', ' ', 45, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (17, 'asdf', 'abcd1234', '62103174602', '女', ' ', ' ', ' ', 90, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (18, 'zxcv', 'abcd1234', '63571428570', '男', ' ', ' ', ' ', 19, ' ', '2018-12-23 20:41:50');
@@ -959,5 +990,7 @@ INSERT INTO `userlist` VALUES (47, 'asdf', 'abcd1234', '87878787878', '女', ' '
 INSERT INTO `userlist` VALUES (48, 'zxcv', 'abcd1234', '34545345435', '男', ' ', ' ', ' ', 12, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (49, 'tyui', 'abcd1234', '87656765456', '女', ' ', ' ', ' ', 20, ' ', '2018-12-23 20:41:50');
 INSERT INTO `userlist` VALUES (50, 'ghjk', 'abcd1234', '35567654567', '男', ' ', ' ', ' ', 33, ' ', '2018-12-23 20:41:50');
+INSERT INTO `userlist` VALUES (51, 'zzf', 'abcd1234', '33333333333', '男', NULL, NULL, NULL, 23, '北京', '2018-12-24 14:06:11');
+INSERT INTO `userlist` VALUES (52, 'qetu', 'abcd1234', '13647586746', '??', '2018-12-22', '', '', 52, '', '2018-12-24 15:00:17');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -23,7 +23,7 @@ $(function() {
             type: "GET",
             url: "/userlist",
             data: {
-                'type': 'insert',
+                'type': 'update',
                 'idx': location.search.split('?id=')[1],
                 'username':$('#username').val(),
                 'city':$('#city').val(),
@@ -31,7 +31,7 @@ $(function() {
                 'birthday':$('#birthday').val(),
                 'email':$('#email').val(),
                 'note':$('#note').val(),
-                'gender':'男'
+                'gender':$('#gender').val()
             },
             success: function (res) {
                 console.log(res);
