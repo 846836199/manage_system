@@ -5,6 +5,8 @@ const adminRouter = require('./admin'),
       goodlistRouter = require('./goodlist'),
       categoryRouter = require('./category'),
       uploadRouter = require('./upload');
+      userRouter = require('./userlist');
+      order_formRouter = require('./orderForm');
 
 let Router = express.Router();
 //关于管理员登录的路由
@@ -18,5 +20,11 @@ Router.use('/category',categoryRouter);
 
 //图片上传路由
 Router.use('/upload',uploadRouter);
+
+//用户路由
+Router.use('/userlist',userRouter);
+
+//订单路由
+Router.use('/order_form', order_formRouter);
 
 module.exports = Router;

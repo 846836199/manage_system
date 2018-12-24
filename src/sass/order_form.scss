@@ -1,0 +1,27 @@
+table {
+    margin-top: 1.25rem;
+    input[type='checkbox'] {
+        width: 1rem;
+        height: 1rem;
+    }
+    button {
+        padding: 0;
+        margin: 0 0.3rem;
+        img {
+            width: 1.8rem;
+        }
+    }
+    tr {
+        td,th {
+            text-align: center;
+            vertical-align: middle!important;
+            font-size: 1.12rem;
+            &:first-child {
+                width: 3.1rem;
+            }
+            &:last-child {
+                width: 3.1rem;
+            }
+        }
+    }
+}
