@@ -99,9 +99,26 @@ Router.get("/", async (req, res) => {
                 i_note,
                 i_gender
             } = req.query;
+            console.log(
+                i_username,
+                i_city,
+                i_psw,
+                i_phonenumber,
+                i_birthday,
+                i_email,
+                i_note,
+                i_gender
+            )
 
-            
+            let sql_05 = `INSERT INTO userlist (username,password,phoneNumber,gender,birthday,email,note,grade,city) VALUES (${i_username},${i_psw},${i_phonenumber},${i_gender},${i_birthday},${i_email},${i_note},${Math.floor(Math.random()*101).toString()},${i_city})`;
+            let msg;
 
+            try {
+                 msg = await _sql.select(sql_05);
+            } catch (err) {
+                console.log(err);
+            }
+            res.send(msg)
             break;
     }
 });

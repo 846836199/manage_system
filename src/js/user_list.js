@@ -13,7 +13,7 @@ $(function () {
                 console.log(res);
                 let data = res.datas;
                 $('.pagination').html('');
-                for (let i=0; i<res.qty*1; i++) {
+                for (let i=0; i<=res.qty*1; i++) {
                     $('.pagination').append(`
                         <li class="page-item"><a class="page-link" href="#">${i+1}</a></li>
                     `);
