@@ -2,7 +2,9 @@ const express = require('express');
 const _sql = require('./connectSql');
 const bodyParser = require('body-parser');
 
-let urlencoded = bodyParser.urlencoded({ extended: false });
+let urlencoded = bodyParser.urlencoded({
+    extended: false
+});
 
 let Router = express.Router();
 
@@ -40,18 +42,21 @@ Router.get("/", async (req, res) => {
                 }
             }
             // console.log(thiswhere);
-            if(thiswhere){
+            if (thiswhere) {
                 sql = `SELECT * from goods ${thiswhere} ORDER BY ${orderby} ${sort} LIMIT ${page*datas},${datas};`;
             } else {
                 sql = `SELECT * from goods ORDER BY ${orderby} ${sort} LIMIT ${page*datas},${datas};`;
             }
-            
+
             let data;
             try {
                 data = await _sql.select(sql);
                 data2 = await _sql.select(sql2);
 
-            } catch (err) {res.send(err);return;}
+            } catch (err) {
+                res.send(err);
+                return;
+            }
             if (data.code == "1") {
                 data.total = data2.data.length;
                 data.page = page;
@@ -67,40 +72,64 @@ Router.get("/", async (req, res) => {
 
         case "delete":
             let allGoodId = req.query.allGoodId;
-            let idStr = allGoodId.split('-').map(item=>{
+            let idStr = allGoodId.split('-').map(item => {
                 return ` id = ${item} or`;
             }).join('');
             let sql3 = `delete from goods where${idStr.slice(0,-2)}`;
             // let sql3 = `delete from goods where id = 1 or id = 2`;
             let thisdata;
-            try{
+            try {
                 thisdata = await _sql.delete(sql3);
-            } catch(err){res.send(err);return;}
-            
+            } catch (err) {
+                res.send(err);
+                return;
+            }
+
             res.send(thisdata);
             break;
+
+        case 'searchOne':
+            let thisid = req.query.thisid;
+            let sql4 = `select * from goods where id = ${thisid}`;
+            let data4;
+            try{
+                data4 = await _sql.select(sql4);
+            } catch(err){res.send(err)}
+            res.send(data4);
     }
 });
 
-Router.post("/",urlencoded,async (req,res)=>{
-    let {id,type,putStatus} = req.body;
+Router.post("/", urlencoded, async (req, res) => {
+    let type = req.body.type;
     let sql;
-    switch(type){
+    switch (type) {
         case 'updateStatus':
-            sql = `UPDATE goods SET status = "${putStatus}" WHERE id = ${id};`; //更新状态
+            let {
+                id,
+                putStatus
+            } = req.body;
+            sql = `UPDATE goods SET status = "${putStatus}" WHERE id = ${id}`; //更新状态
             // res.send(sql);
             break;
+        case 'insert':
+            var {goodName,newPrice,oldPrice,repertory,goodCategory,imgSrc,goodStatus} = req.body;
+            imgSrc = imgSrc.replace(/\\/,'/');
+
+            sql = `insert into goods (name,old_price,new_price,num,img,status,class) values ('${goodName}',${oldPrice},${newPrice},${repertory},'${imgSrc}','${goodStatus}',${goodCategory})`;
+            console.log(imgSrc);
+            break;
+        case 'updateGood':
+            var {goodid,goodName,newPrice,oldPrice,repertory,goodCategory,imgSrc,goodStatus} = req.body;
+            imgSrc = imgSrc.replace(/\\/,'/');
+            sql = `UPDATE goods SET name = '${goodName}',old_price=${oldPrice},new_price=${newPrice},num=${repertory},img='${imgSrc}',status='${goodStatus}',class=${goodCategory} WHERE id = ${goodid}`;
     }
     let data;
-    try{
+    try {
         data = await _sql.update(sql);
-    } catch(err){res.send(err);return;}
-    
-    // let data = {
-    //     id,
-    //     type,
-    //     putStatus
-    // }
+    } catch (err) {
+        res.send(err);
+        return;
+    }
     res.send(data);
 });
 
