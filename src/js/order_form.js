@@ -1,4 +1,32 @@
 $(function () {
+    let nav = document.querySelector('.navs');
+    let adminName = nav.querySelector('.admin');
+    let isLogin = window.sessionStorage.getItem("username");
+    let logout = nav.querySelector('.logout');
+    
+    if (isLogin) {
+        // console.log(isLogin);
+        //设置用户名
+        adminName.innerHTML = isLogin;
+    } else {
+        location.href = '../login.html';
+        return;
+    }
+
+    let h1 = document.querySelector('h1');
+    h1.onclick = function () {
+        location.href = "./center.html";
+    }
+
+    //登出
+    logout.onclick = () => {
+        let issure = confirm('你确定要登出吗？');
+        if (issure) {
+            window.sessionStorage.clear(); //清除session值
+            location.href = '../login.html';
+        }
+    }
+
     $.ajax({
         type: "get",
         url: "/order_form",
@@ -55,7 +83,7 @@ $(function () {
         }
     });
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         $('.left .col-md-2').css('height', $(document).height());
     });
 

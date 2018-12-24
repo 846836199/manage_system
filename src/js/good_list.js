@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: "type=goodselect",
                 success: function (data) {
                     // let res = JSON.parse(data);
-                    console.log(data);
+                    // console.log(data);
                     if (data.code == "1") {
                         data.data.forEach(element => {
                             allClass.push(element);
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     thisstyle.push('badge-success');
                                 }
                             }
-                            console.log(item.status);
+                            // console.log(item.status);
                             //data-id 为当前状态码
                             return `<tr>
                                         <td class="good_check"><input type="checkbox"></td>
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //添加商品
         $('.addGood').click(() => {
             sessionStorage.removeItem('goodId');
-            window.sessionStorage.setItem("method", 0); //添加标识到session
+            // window.sessionStorage.setItem("method", 0); //添加标识到session
             location.href = './dispose_good.html'; //跳转到添加商品页面
         });
 
@@ -427,8 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
         $('tbody').on('click', '.edit', function () {
             let thisGood = $(this).parent().parent().find('.good_id').html(); //获取当前id;
             window.sessionStorage.setItem("goodId", thisGood); //添加标识到session
-            window.sessionStorage.setItem("method", 1);
-            location.href = './dispose_good.html'; //跳转到添加商品页面
+            // window.sessionStorage.setItem("method", 1);
+            location.href = './dispose_good.html?id='+thisGood; //跳转到添加商品页面
         });
 
         //表格底部功能

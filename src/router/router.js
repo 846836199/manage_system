@@ -6,11 +6,15 @@ const adminRouter = require('./admin'),
       categoryRouter = require('./category'),
       uploadRouter = require('./upload');
       userRouter = require('./userlist');
-      order_formRouter = require('./orderForm');
+      order_formRouter = require('./orderForm'),
+      centerRouter = require('./center');
 
 let Router = express.Router();
 //关于管理员登录的路由
 Router.use('/login',adminRouter);
+
+//关于首页的路由
+Router.use('/center',centerRouter);
 
 //关于商品列表的路由
 Router.use('/goodlist',goodlistRouter);

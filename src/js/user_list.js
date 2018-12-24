@@ -1,4 +1,31 @@
 $(function () {
+    let nav = document.querySelector('.navs');
+    let adminName = nav.querySelector('.admin');
+    let isLogin = window.sessionStorage.getItem("username");
+    let logout = nav.querySelector('.logout');
+    
+    if (isLogin) {
+        // console.log(isLogin);
+        //设置用户名
+        adminName.innerHTML = isLogin;
+    } else {
+        location.href = '../login.html';
+        return;
+    }
+
+    //登出
+    logout.onclick = () => {
+        let issure = confirm('你确定要登出吗？');
+        if (issure) {
+            window.sessionStorage.clear(); //清除session值
+            location.href = '../login.html';
+        }
+    }
+
+    let h1 = document.querySelector('h1');
+    h1.onclick = function () {
+        location.href = "./center.html";
+    }
 
     function load_data(type, page) {
         $.ajax({
@@ -13,7 +40,7 @@ $(function () {
                 console.log(res);
                 let data = res.datas;
                 $('.pagination').html('');
-                for (let i=0; i<=res.qty*1; i++) {
+                for (let i = 0; i <= res.qty * 1; i++) {
                     $('.pagination').append(`
                         <li class="page-item"><a class="page-link" href="#">${i+1}</a></li>
                     `);
@@ -72,7 +99,7 @@ $(function () {
                     }
                 });
 
-                $('.pagination li').click(function() {
+                $('.pagination li').click(function () {
                     $('.pagination li').removeClass('active');
                     $(this).addClass('active');
                     let page = $(this).children().text();
@@ -103,7 +130,7 @@ $(function () {
             $('#delMore .btn-primary').click(function () {
                 let arr = $('table tbody tr input[type=checkbox]:checked').parent().parent().toArray();
                 let idArr = [];
-                arr.forEach(function(item, idx) {
+                arr.forEach(function (item, idx) {
                     idArr.push($(item).attr('id'));
                 });
 
@@ -135,7 +162,7 @@ $(function () {
         }
     });
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         $('.left .col-md-2').css('height', $(document).height());
     });
 

@@ -1,4 +1,32 @@
 $(function () {
+    let nav = document.querySelector('.navs');
+    let adminName = nav.querySelector('.admin');
+    let isLogin = window.sessionStorage.getItem("username");
+    let logout = nav.querySelector('.logout');
+    //判断是否登录 
+    if (isLogin) {
+        // console.log(isLogin);
+        //设置用户名
+        adminName.innerHTML = isLogin;
+    } else {
+        location.href = '../login.html';
+        return;
+    }
+
+    let h1 = document.querySelector('h1');
+    h1.onclick = function () {
+        location.href = "./center.html";
+    }
+
+    //登出
+    logout.onclick = () => {
+        let issure = confirm('你确定要登出吗？');
+        if (issure) {
+            window.sessionStorage.clear(); //清除session值
+            location.href = '../login.html';
+        }
+    }
+
     $(window).scroll(function () {
         $('.left .col-md-2').css('height', $(document).height());
     });
@@ -19,14 +47,14 @@ $(function () {
                                 url: "/userlist",
                                 data: {
                                     'type': 'insert',
-                                    'i_username':$('#username').val(),
-                                    'i_city':$('#city').val(),
-                                    'i_psw':$('#psw').val(),
-                                    'i_phonenumber':$('#phonenumber').val(),
-                                    'i_birthday':$('#birthday').val(),
-                                    'i_email':$('#email').val(),
-                                    'i_note':$('#note').val(),
-                                    'i_gender':$('#gender').val()
+                                    'i_username': $('#username').val(),
+                                    'i_city': $('#city').val(),
+                                    'i_psw': $('#psw').val(),
+                                    'i_phonenumber': $('#phonenumber').val(),
+                                    'i_birthday': $('#birthday').val(),
+                                    'i_email': $('#email').val(),
+                                    'i_note': $('#note').val(),
+                                    'i_gender': $('#gender').val()
                                 },
                                 success: function (res) {
                                     location.href = "../html/user_list.html";

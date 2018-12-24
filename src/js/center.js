@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     //状态码
-    let statusCode = ["200", "304"];
+    // let statusCode = ["200", "304"];
     let h1 = document.querySelector('h1');
     //导航栏节点
     let nav = document.querySelector('.navs');
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function runAll() {
+
         h1.onclick = function(){
             location.href = "./center.html";
         }
@@ -29,6 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 location.href = '../login.html';
             }
         }
+
+        $.ajax({
+            type:'get',
+            aysnc:true,
+            url:'/center',
+            data:{
+                type:'all'
+            },
+            success:function(data){
+                if(data.code == "1"){
+                    $('.user').html(data.user);
+                    $('.order').html(data.order);
+                    $('.good').html(data.good);
+                } else {
+                    alert('加载数据失败');
+                }
+            }
+        });
 
     }
 });

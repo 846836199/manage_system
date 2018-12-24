@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let adminName = nav.querySelector('.admin'); //用户名节点
     let logout = nav.querySelector('.logout'); //登出
     let isLogin = window.sessionStorage.getItem("username"); //获取用户名
-    let method = window.sessionStorage.getItem("method"); //设置当前页面为修改商品或者添加商品
+    // let method = window.sessionStorage.getItem("method"); //设置当前页面为修改商品或者添加商品
+    let method = location.search.slice(1).split('=')[1];
+    console.log(method);
     let reg = /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/; //商品价格正则
     let imgLength = 0; //商品图片个数
     let thisClass = 0;
@@ -73,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
         //添加商品
         $('.addGood').click(() => {
             sessionStorage.removeItem('goodId');
-            window.sessionStorage.setItem("method", 0); //添加标识到session
-            // location.href = './dispose_good.html'; //跳转到添加商品页面
+            // window.sessionStorage.setItem("method", 0); //添加标识到session
+            location.href = './dispose_good.html'; //跳转到添加商品页面
         });
 
         resizeHeight();
@@ -87,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         //标题
-        if (method == 1) {
+        if (method) {
             $('.checkMethod').html('修改商品信息');
             $('.saveGood').html('保&nbsp;&nbsp;&nbsp;&nbsp;存');
 

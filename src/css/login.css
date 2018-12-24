@@ -1,10 +1,12 @@
 :root {
   --input-padding-x: .75rem;
-  --input-padding-y: .75rem; }
+  --input-padding-y: .75rem;
+}
 
 html,
 body {
-  height: 100%; }
+  height: 100%;
+}
 
 body {
   display: -ms-flexbox;
@@ -18,21 +20,25 @@ body {
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5; }
+  background-color: #f5f5f5;
+}
 
 .form-signin {
   width: 100%;
   max-width: 420px;
   padding: 15px;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 .form-label-group {
   position: relative;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 .form-label-group > input,
 .form-label-group > label {
-  padding: var(--input-padding-y) var(--input-padding-x); }
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
 
 .form-label-group > label {
   position: absolute;
@@ -46,58 +52,74 @@ body {
   color: #495057;
   border: 1px solid transparent;
   border-radius: .25rem;
-  transition: all .1s ease-in-out; }
+  transition: all .1s ease-in-out;
+}
 
 .form-label-group input::-webkit-input-placeholder {
-  color: transparent; }
+  color: transparent;
+}
 
 .form-label-group input:-ms-input-placeholder {
-  color: transparent; }
+  color: transparent;
+}
 
 .form-label-group input::-ms-input-placeholder {
-  color: transparent; }
+  color: transparent;
+}
 
 .form-label-group input::-moz-placeholder {
-  color: transparent; }
+  color: transparent;
+}
 
 .form-label-group input::placeholder {
-  color: transparent; }
+  color: transparent;
+}
 
 .form-label-group input:not(:placeholder-shown) {
   padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-  padding-bottom: calc(var(--input-padding-y) / 3); }
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
 
 .form-label-group input:not(:placeholder-shown) ~ label {
   padding-top: calc(var(--input-padding-y) / 3);
   padding-bottom: calc(var(--input-padding-y) / 3);
   font-size: 12px;
-  color: #777; }
+  color: #777;
+}
 
 .login_body #userPassHelp, .login_body #codeHelp {
   opacity: 0;
   filter: alpha(opacity=0);
-  margin-bottom: 0.25rem; }
+  margin-bottom: 0.25rem;
+}
 .login_body .userInput {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 .login_body .passInput {
-  margin-bottom: 1.4rem; }
+  margin-bottom: 1.4rem;
+}
 .login_body .ver_code {
-  margin-bottom: 0.25rem; }
-  .login_body .ver_code .code {
-    font-size: 1rem;
-    width: 100px;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    .login_body .ver_code .code .card-body {
-      padding: 0.5rem;
-      letter-spacing: 5px; }
-  .login_body .ver_code #inputCode {
-    padding: 0.5rem; }
-  .login_body .ver_code #inputCode, .login_body .ver_code .code {
-    width: 49%;
-    display: inline-block; }
+  margin-bottom: 0.25rem;
+}
+.login_body .ver_code .code {
+  font-size: 1rem;
+  width: 100px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.login_body .ver_code .code .card-body {
+  padding: 0.5rem;
+  letter-spacing: 5px;
+}
+.login_body .ver_code #inputCode {
+  padding: 0.5rem;
+}
+.login_body .ver_code #inputCode, .login_body .ver_code .code {
+  width: 49%;
+  display: inline-block;
+}
 
 /*# sourceMappingURL=login.css.map */
