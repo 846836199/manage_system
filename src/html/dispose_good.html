@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dispose Good</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/dispose_good.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row left">
+            <div class="col-md-2" id="common">
+                <h1>后台管理系统</h1>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                    aria-expanded="true" aria-controls="collapseOne">
+                                    商品管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="good_list.html">商品列表</a></li>
+                                    <li class="list-group-item"><a href="goods_category.html">商品分类</a></li>
+                                    <li class="list-group-item addGood"><a href="dispose_good.html">添加商品</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    用户管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="#">用户列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    订单管理
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><a href="#">订单列表</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 formBox">
+                <div class="row">
+                    <div class="col-md-12 navs">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="center.html">首页</a></li>
+                                <li class="breadcrumb-item">商品管理</li>
+                                <li class="breadcrumb-item checkMethod">添加商品</li>
+                                <li class="right"><span class="admin"></span><button type="button" class="btn btn-warning logout">退出</button></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="goodName">商品名称</label>
+                            <input type="text" id="goodName" class="form-control" placeholder="50字以内">
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="goodPrice">商品价格</label>
+                                <input type="text" class="form-control price" id="newPrice" placeholder="商品价格">
+                                <div class="invalid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="oldPrice">销售价格</label>
+                                <input type="text" class="form-control price" id="oldPrice" placeholder="销售价格">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="goodCategory">商品分类</label>
+                            <select class="form-control col-md-3" id="goodCategory">
+                                <!-- <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option> -->
+                            </select>
+                        </div>
+                        <label>商品图片</label>
+                        <div class="goodPic">
+
+                            <div class="addBox">
+                                <img src="../css/img/addPic.jpg" alt="" class="imgClick">
+                                <input type="file" name="goodspic" id="img-upload" multiple>
+                            </div>
+                            <!-- <div class="mr-4">
+                                
+                                    <img src="../css/img/logo.gif" alt="" class="img-thumbnail mb-2">
+                                </div>
+                                <button type="button" class="btn btn-danger btn-sm">删除</button>
+                            </div> -->
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="repertory">库存</label>
+                                <input type="text" class="form-control" id="repertory" placeholder="库存">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <label>商品属性</label>
+                        <div class="mb-2 goodCheck">
+                            <button type="button" class="btn btn-outline-success btn-sm">上架</button>
+                            <button type="button" class="btn btn-outline-success btn-sm">热卖</button>
+                            <button type="button" class="btn btn-outline-success btn-sm">推荐</button>
+                            <button type="button" class="btn btn-outline-success btn-sm">促销</button>
+                        </div>
+                        <button type="button" class="btn btn-primary saveGood"></button>
+                        <!-- <input type="submit" value="保存"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/jquery-1.10.1.min.js"></script>
+<script src="../assets/popper.js/dist/umd/popper.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.js"></script>
+<script src="../js/dispose_good.js"></script>
+
+</html>

@@ -52,8 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let ofTop = goodlist.offsetTop;
             let goodHei = goodlist.offsetHeight;
             let navHei = nav.offsetHeight;
-            document.documentElement.style.height = document.body.style.height = (ofTop + navHei + goodHei) + 'px';
-            // console.log(ofTop+navHei+goodHei);
+            let clientH = window.innerHeight;
+            console.log(clientH,(ofTop + navHei + goodHei));
+            if((ofTop + navHei + goodHei)>clientH){
+                document.documentElement.style.height = (ofTop + navHei + goodHei) + 'px';
+            } else {
+                document.documentElement.style.height = clientH + 'px';
+            }
         }
 
         renderTable();

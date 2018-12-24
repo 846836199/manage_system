@@ -1,5 +1,3 @@
-html,
-body,
 .container-fluid,
 .left,
 .col-md-2 {
@@ -61,88 +59,44 @@ body,
   font-size: 0.5rem;
 }
 
-.topForm {
-  width: 100%;
+.goodPic {
+  height: 155px;
 }
-
-.table {
-  font-size: 0.8rem;
-}
-
-.good_check {
-  width: 30px;
-  text-align: center;
-}
-
-.good_id {
-  width: 60px;
-  text-align: center;
-}
-
-.good_name {
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_class {
-  max-width: 70px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_time {
-  max-width: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.good_status {
-  max-width: 70px;
-}
-
-.price {
-  width: 102px;
-}
-
-.table td {
+.goodPic > div {
+  width: 100px;
+  height: 155px;
   vertical-align: middle;
-}
-
-.operation {
-  width: 184px;
-}
-
-.pagination span {
   display: inline-block;
-  vertical-align: middle;
+}
+.goodPic > div button {
+  display: block;
+  margin: 0 auto;
+}
+.goodPic > div .imgBox {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.goodPic img {
+  display: block;
+  width: 100px;
+  height: 100px;
 }
 
-#inputState {
-  margin-left: 5px;
+.addBox {
+  position: relative;
+  width: 100px;
+  height: 155px;
 }
-
-.morePages {
-  padding: 0 14px;
-  overflow: hidden;
-  line-height: 40px;
-}
-
-.orderby {
+.addBox img {
+  position: absolute;
+  top: 50%;
   cursor: pointer;
+  transform: translateY(-50%);
 }
 
-.activeAsc {
-  color: #fff;
-  background: #df815b;
+#img-upload {
+  display: none;
 }
 
-.activeDesc {
-  color: #fff;
-  background: #96b7c6;
-}
-
-/*# sourceMappingURL=good_list.css.map */
+/*# sourceMappingURL=dispose_good.css.map */
