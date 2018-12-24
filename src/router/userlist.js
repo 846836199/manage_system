@@ -110,7 +110,7 @@ Router.get("/", async (req, res) => {
                 i_gender
             )
 
-            let sql_05 = `INSERT INTO userlist (username,password,phoneNumber,gender,birthday,email,note,grade,city) VALUES (${i_username},${i_psw},${i_phonenumber},${i_gender},${i_birthday},${i_email},${i_note},${Math.floor(Math.random()*101).toString()},${i_city})`;
+            let sql_05 = `INSERT INTO userlist (username,password,phoneNumber,gender,birthday,email,note,grade,city) VALUES ('${i_username}','${i_psw}','${i_phonenumber}','${i_gender}','${i_birthday}','${i_email}','${i_note}','${Math.floor(Math.random()*101).toString()}','${i_city}')`;
             let msg;
 
             try {

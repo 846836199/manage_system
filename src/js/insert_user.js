@@ -29,7 +29,7 @@ $(function () {
                                     'i_gender':$('#gender').val()
                                 },
                                 success: function (res) {
-                                    // location.href = "../html/user_list.html";
+                                    location.href = "../html/user_list.html";
                                 }
                             });
 
