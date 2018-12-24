@@ -99,6 +99,9 @@ Router.get("/", async (req, res) => {
                 i_note,
                 i_gender
             } = req.query;
+
+            
+
             break;
     }
 });
