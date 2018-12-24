@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     classN = ele.classname;
                                 }
                             });
-                            let thisstatus = item.status.split('-');
+                            let thisstatus = item.status.split(',');
                             let thisstyle = [];
                             let putawayStyle = 'btn-outline-warning'; //已上架
                             let putawayStr = '下架';
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     thisstyle.push('badge-success');
                                 }
                             }
-                            // console.log(thisstatus);
+                            console.log(item.status);
                             //data-id 为当前状态码
                             return `<tr>
                                         <td class="good_check"><input type="checkbox"></td>

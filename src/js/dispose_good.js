@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                         <img src="${'../'+res.img}" alt="" class="img-thumbnail mb-2 thisimg">
                                         <button type="button" class="btn btn-danger btn-sm">删除</button>
                                     </div>`;
-                        let thisStatus = res.status.split('-');
+                        let thisStatus = res.status.split(',');
                         console.log(thisStatus);
                         $('#goodName').val(res.name);
                         $('#newPrice').val(res.new_price);
@@ -369,9 +369,9 @@ document.addEventListener('DOMContentLoaded', function () {
             $('.goodCheck button').each(function () {
                 // console.log($(this));
                 if ($(this).hasClass('btn-outline-success')) {
-                    goodStatus += '0-';
+                    goodStatus += '0,';
                 } else {
-                    goodStatus += '1-';
+                    goodStatus += '1,';
                 }
             });
             goodStatus = goodStatus.slice(0, -1);
