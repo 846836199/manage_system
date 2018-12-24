@@ -10,6 +10,7 @@ $(function () {
                 'nums': 15,
             },
             success: function (res) {
+                console.log(res);
                 let data = res.datas;
                 $('.pagination').html('');
                 for (let i=0; i<res.qty*1; i++) {
