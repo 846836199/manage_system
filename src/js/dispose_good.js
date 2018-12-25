@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         adminName.innerHTML = isLogin;
         runAll();
     } else {
-        location.href = '../login.html';
+        location.href = '../index.html';
     }
 
     function runAll() {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let issure = confirm('你确定要登出吗？');
             if (issure) {
                 window.sessionStorage.clear(); //清除session值
-                location.href = '../login.html';
+                location.href = '../index.html';
             }
         }
 

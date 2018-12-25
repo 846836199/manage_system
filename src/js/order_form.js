@@ -9,7 +9,7 @@ $(function () {
         //设置用户名
         adminName.innerHTML = isLogin;
     } else {
-        location.href = '../login.html';
+        location.href = '../index.html';
         return;
     }
 
@@ -23,7 +23,7 @@ $(function () {
         let issure = confirm('你确定要登出吗？');
         if (issure) {
             window.sessionStorage.clear(); //清除session值
-            location.href = '../login.html';
+            location.href = '../index.html';
         }
     }
 
